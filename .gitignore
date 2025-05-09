@@ -1,0 +1,15 @@
+# Secrets
+.zsh_history
+zsh/.zsh_history
+.zsh_sessions
+zsh/.zsh_sessions
+*.zcompdump*
+**/.env*
+**/api_keys.*
+zsh/*.zcompdump*
+**/target/
+**/Cargo.lock
+
+# System
+.DS_Store
+*.swp
