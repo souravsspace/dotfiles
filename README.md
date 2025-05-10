@@ -1,5 +1,11 @@
 # Dotfiles
 
 ```bash
-stow. 
-````
+stow.
+```
+
+or
+
+```bash
+./bootstrap.sh
+```
