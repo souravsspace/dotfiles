@@ -21,7 +21,7 @@ mouse-scroll-multiplier = 2
 window-padding-balance = true
 window-save-state = always
 window-colorspace = "display-p3"
-window-decoration = none
+window-decoration = none # hide top bar
 
 ### tabs ###
 keybind = cmd+s>c=new_tab
@@ -60,3 +60,4 @@ macos-titlebar-style = transparent
 keybind = cmd+s>r=reload_config
 keybind = cmd+s>x=close_surface
 keybind = cmd+s>n=new_window
+
