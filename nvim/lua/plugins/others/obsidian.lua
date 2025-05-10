@@ -7,12 +7,21 @@ return {
     event = {
       'BufReadPre '
         .. vim.fn.expand '~'
-        .. '/Library/Mobile Documents/iCloud~md~obsidian/Documents/savory/**.md',
+        .. '/Library/Mobile Documents/iCloud~md~obsidian/Documents/savory/*.md',
+      'BufNewFile '
+        .. vim.fn.expand '~'
+        .. '/Library/Mobile Documents/iCloud~md~obsidian/Documents/savory/*.md',
     },
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = {
       -- Point this to your vault on iCloud Drive:
-      dir = vim.fn.expand '~/Library/Mobile Documents/com~apple~CloudDocs/Obsidian/savory',
+      dir = vim.fn.expand '~/Library/Mobile Documents/iCloud~md~obsidian/Documents/savory',
+      workspaces = {
+        {
+          name = 'savory',
+          path = '~/Library/Mobile Documents/iCloud~md~obsidian/Documents/savory',
+        },
+      },
       completion = {
         nvim_cmp = true,
         min_chars = 2,
