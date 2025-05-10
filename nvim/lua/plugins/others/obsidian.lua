@@ -5,16 +5,31 @@ return {
     lazy = true,
     ft = { 'markdown' },
     event = {
-      'BufReadPre '
-        .. vim.fn.expand '~'
-        .. '/Library/Mobile Documents/iCloud~md~obsidian/Documents/savory/*.md',
-      'BufNewFile '
-        .. vim.fn.expand '~'
-        .. '/Library/Mobile Documents/iCloud~md~obsidian/Documents/savory/*.md',
+      -- If you want explicit file-based lazy-load, uncomment and adjust these globs:
+      -- 'BufReadPre ' .. vim.fn.expand('~/vaults/personal') .. '/**/*.md',
+      -- 'BufNewFile ' .. vim.fn.expand('~/vaults/personal') .. '/**/*.md',
+      -- 'BufReadPre ' .. vim.fn.expand('~/vaults/work') .. '/**/*.md',
+      -- 'BufNewFile ' .. vim.fn.expand('~/vaults/work') .. '/**/*.md',
+    },
+    cmd = {
+      'ObsidianOpen',
+      'ObsidianNew',
+      'ObsidianSearch',
+      'ObsidianBacklinks',
+      'ObsidianTemplate',
+      'ObsidianFollowLink',
+      'ObsidianLinkNew',
+    },
+    keys = {
+      -- leader-o mappings for load-on-press
+      { '<leader>oo', '<cmd>ObsidianOpen<CR>' },
+      { '<leader>on', '<cmd>ObsidianNew<CR>' },
+      { '<leader>os', '<cmd>ObsidianSearch<CR>' },
+      { '<leader>ob', '<cmd>ObsidianBacklinks<CR>' },
+      { '<leader>ot', '<cmd>ObsidianTemplate<CR>' },
     },
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = {
-      -- Point this to your vault on iCloud Drive:
       dir = vim.fn.expand '~/Library/Mobile Documents/iCloud~md~obsidian/Documents/savory',
       workspaces = {
         {
@@ -22,29 +37,44 @@ return {
           path = '~/Library/Mobile Documents/iCloud~md~obsidian/Documents/savory',
         },
       },
+      notes_subdir = 'notes',
+      daily_notes = {
+        folder = 'notes/dailies',
+        date_format = '%Y-%m-%d',
+        alias_format = '%B %-d, %Y',
+        default_tags = { 'daily-notes' },
+        template = nil,
+      },
+      log_level = vim.log.levels.INFO,
       completion = {
         nvim_cmp = true,
         min_chars = 2,
       },
       mappings = {
-        -- let gf fall back to Obsidian link opener
-        ['gf'] = function()
-          return require('obsidian').util.gf_passthrough()
-        end,
+        ['gf'] = {
+          action = function()
+            return require('obsidian').util.gf_passthrough()
+          end,
+          opts = { expr = true, buffer = true },
+        },
+        ['<leader>ch'] = {
+          action = function()
+            return require('obsidian').util.toggle_checkbox()
+          end,
+          opts = { buffer = true },
+        },
+        ['<cr>'] = {
+          action = function()
+            return require('obsidian').util.smart_action()
+          end,
+          opts = { expr = true, buffer = true },
+        },
       },
-      note_frontmatter_func = function(note)
-        local out = { id = note.id, aliases = note.aliases, tags = note.tags }
-        if note.metadata then
-          for k, v in pairs(note.metadata) do
-            out[k] = v
-          end
-        end
-        return out
-      end,
+      new_notes_location = 'notes_subdir',
       note_id_func = function(title)
         local suffix = ''
         if title then
-          suffix = title:gsub(' ', '-'):gsub('[^A-Za-z0-9-]', ''):lower()
+          suffix = title:gsub('%s+', '-'):gsub('[^A-Za-z0-9-]', ''):lower()
         else
           for _ = 1, 4 do
             suffix = suffix .. string.char(math.random(65, 90))
@@ -52,10 +82,61 @@ return {
         end
         return tostring(os.time()) .. '-' .. suffix
       end,
+      note_path_func = function(spec)
+        local path = spec.dir / tostring(spec.id)
+        return path:with_suffix '.md'
+      end,
+      wiki_link_func = function(opts)
+        return require('obsidian.util').wiki_link_id_prefix(opts)
+      end,
+      markdown_link_func = function(opts)
+        return require('obsidian.util').markdown_link(opts)
+      end,
+      preferred_link_style = 'wiki',
+      disable_frontmatter = false,
+      note_frontmatter_func = function(note)
+        if note.title then
+          note:add_alias(note.title)
+        end
+        local out = { id = note.id, aliases = note.aliases, tags = note.tags }
+        if note.metadata and not vim.tbl_isempty(note.metadata) then
+          for k, v in pairs(note.metadata) do
+            out[k] = v
+          end
+        end
+        return out
+      end,
+      templates = {
+        folder = 'templates',
+        date_format = '%Y-%m-%d',
+        time_format = '%H:%M',
+        substitutions = {},
+      },
+      use_advanced_uri = false,
+      open_app_foreground = false,
+      picker = {
+        name = 'telescope.nvim',
+        note_mappings = { new = '<C-x>', insert_link = '<C-l>' },
+        tag_mappings = { tag_note = '<C-x>', insert_tag = '<C-l>' },
+      },
+      sort_by = 'modified',
+      sort_reversed = true,
+      search_max_lines = 1000,
+      open_notes_in = 'current',
+      attachments = {
+        img_folder = 'assets/imgs',
+        img_name_func = function()
+          return string.format('%s-', os.time())
+        end,
+        img_text_func = function(client, path)
+          local rel = client:vault_relative_path(path) or path
+          return string.format('![%s](%s)', rel.name, rel)
+        end,
+      },
     },
     config = function(_, opts)
       require('obsidian').setup(opts)
-      -- Set up keymaps when editing markdown
+      -- Buffer-local keymaps for obsidian commands
       vim.api.nvim_create_autocmd('FileType', {
         pattern = 'markdown',
         callback = function()
