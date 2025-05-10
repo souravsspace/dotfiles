@@ -1,1 +1,5 @@
 # Dotfiles
+
+```bash
+stow. 
+````
