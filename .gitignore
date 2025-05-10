@@ -10,6 +10,7 @@ zsh/*.zcompdump*
 **/target/
 **/Cargo.lock
 lazygit
+github-copilot
 
 # System
 .DS_Store
