@@ -43,7 +43,6 @@ fi
 alias ls="ls -G"
 alias ll="ls -la"
 alias la="ls -lAh"
-alias l="ls -lh"
 
 alias cl='clear'
 

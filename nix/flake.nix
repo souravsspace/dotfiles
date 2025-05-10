@@ -70,6 +70,7 @@
             "rectangle"
             "visual-studio-code"
             "google-chrome"
+            "obsidian"
           ];
 
           onActivation.cleanup = "zap";
