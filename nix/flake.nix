@@ -52,6 +52,11 @@
             "rbenv"
             "curl"
             "stow"
+            "ripgrep"
+            "lazydocker"
+            "tree"
+            "eza"
+            "zoxide"
           ];
 
           # All GUI apps / fonts you had under `brew list --cask`

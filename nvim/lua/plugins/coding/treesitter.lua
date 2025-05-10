@@ -31,6 +31,7 @@ return {
         'gitattributes',
         'json5',
         'nix',
+        'dockerfile',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,

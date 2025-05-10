@@ -9,6 +9,7 @@ zsh/.zsh_sessions
 zsh/*.zcompdump*
 **/target/
 **/Cargo.lock
+lazygit
 
 # System
 .DS_Store

@@ -39,16 +39,66 @@ if command -v starship &> /dev/null; then
   eval "$(starship init zsh)"
 fi
 
-# Aliases
+# basic
 alias ls="ls -G"
 alias ll="ls -la"
 alias la="ls -lAh"
 alias l="ls -lh"
+
+alias cl='clear'
+
+alias la=tree
+
+export BAT_THEME="Catppuccin Mocha"
+alias cat=bat
+
+# eza 
+alias l="eza -l --icons --git -a"
+alias lt="eza --tree --level=2 --long --icons --git"
+alias ltree="eza --tree --level=2  --icons --git"
+
+# code editor
 alias vi="nvim"
-# alias ivi="vi $(fzf --preview="bat --color=always {}")"
 alias vscode="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
 alias cursor="/Applications/Cursor.app/Contents/MacOS/Cursor"
 
+# zoxide 
+alias zz="z -"
+
+# Git
+alias gc="git commit -m"
+alias gca="git commit -a -m"
+alias gp="git push origin HEAD"
+alias gpu="git pull origin"
+alias gst="git status"
+alias glog="git log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit"
+alias gdiff="git diff"
+alias gco="git checkout"
+alias gb='git branch'
+alias gba='git branch -a'
+alias gadd='git add'
+alias ga='git add -p'
+alias gcoall='git checkout -- .'
+alias gr='git remote'
+alias gre='git reset'
+
+# Docker
+alias dco="docker compose"
+alias dps="docker ps"
+alias dpa="docker ps -a"
+alias dl="docker ps -l -q"
+alias dx="docker exec -it"
+
+# Dirs
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+
+# FZF
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Export and alias of ssh-config
 export SSH_DIR="$HOME/dotfiles/ssh"
@@ -125,3 +175,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
+
+# Zoxide (better cd)
+eval "$(zoxide init zsh)"

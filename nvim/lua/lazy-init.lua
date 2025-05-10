@@ -35,7 +35,6 @@ require('lazy').setup({
     { import = 'plugins.formatting.conform' },
     { import = 'plugins.formatting.prettier' },
     { import = 'plugins.languages.astro' },
-    { import = 'plugins.languages.docker' },
     { import = 'plugins.languages.git' },
     { import = 'plugins.languages.go' },
     { import = 'plugins.languages.json' },

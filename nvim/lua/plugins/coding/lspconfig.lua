@@ -297,6 +297,11 @@ return {
         },
 
         nil_ls = {},
+
+        dockerls = {},
+        docker_compose_language_service = {},
+
+        marksman = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -333,6 +338,7 @@ return {
         'tailwindcss-language-server',
         'vtsls',
         'sqlfluff',
+        'hadolint',
       })
 
       require('mason-tool-installer').setup {
