@@ -3,6 +3,8 @@
 zsh/.zsh_history
 .zsh_sessions
 zsh/.zsh_sessions
+.env
+zsh/.env
 *.zcompdump*
 **/.env*
 **/api_keys.*
