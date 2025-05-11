@@ -43,7 +43,6 @@ require('lazy').setup({
     { import = 'plugins.languages.mdx' },
     { import = 'plugins.languages.python' },
     { import = 'plugins.languages.rust' },
-    { import = 'plugins.languages.sql' },
     { import = 'plugins.languages.tailwind' },
     { import = 'plugins.languages.toml' },
     { import = 'plugins.languages.typescript' },

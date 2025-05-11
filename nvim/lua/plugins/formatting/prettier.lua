@@ -15,6 +15,7 @@ local supported = {
   'typescriptreact',
   'vue',
   'yaml',
+  'sql',
 }
 
 return {

@@ -339,6 +339,7 @@ return {
         'vtsls',
         'sqlfluff',
         'hadolint',
+        'sqls',
       })
 
       require('mason-tool-installer').setup {
