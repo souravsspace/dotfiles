@@ -71,8 +71,6 @@ return {
           line_up = '',
         },
       }
-
-      -- MiniStatusline removed as requested
     end,
   },
 }
