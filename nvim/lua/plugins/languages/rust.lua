@@ -95,19 +95,27 @@ return {
       },
     },
     config = function(_, opts)
-      if require('lazy.core.config').plugins['mason.nvim'] ~= nil then
-        local package_path =
-          require('mason-registry').get_package('codelldb'):get_install_path()
-        local codelldb = package_path .. '/extension/adapter/codelldb'
-        local library_path = package_path .. '/extension/lldb/lib/liblldb.dylib'
-        local uname = io.popen('uname'):read '*l'
-        if uname == 'Linux' then
-          library_path = package_path .. '/extension/lldb/lib/liblldb.so'
+      if require('lazy.core.config').plugins['mason.nvim'] then
+        local mason_data = vim.fn.stdpath 'data' .. '/mason/packages'
+
+        local pkg_dir = mason_data .. '/codelldb'
+
+        local codelldb = pkg_dir .. '/extension/adapter/codelldb'
+        if vim.fn.has 'win32' == 1 then
+          codelldb = codelldb .. '.exe'
         end
+
+        local liblldb
+        if vim.fn.has 'mac' == 1 then
+          liblldb = pkg_dir .. '/extension/lldb/lib/liblldb.dylib'
+        else
+          liblldb = pkg_dir .. '/extension/lldb/lib/liblldb.so'
+        end
+
         opts.dap = {
           adapter = require('rustaceanvim.config').get_codelldb_adapter(
             codelldb,
-            library_path
+            liblldb
           ),
         }
       end
