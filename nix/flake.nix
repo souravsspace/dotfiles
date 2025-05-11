@@ -57,6 +57,7 @@
             "tree"
             "eza"
             "zoxide"
+            "sqlite"
           ];
 
           # All GUI apps / fonts you had under `brew list --cask`
