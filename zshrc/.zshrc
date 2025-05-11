@@ -178,3 +178,9 @@ source <(fzf --zsh)
 
 # Zoxide (better cd)
 eval "$(zoxide init zsh)"
+
+# sqlite
+_sqlite3() {
+  command sqlite3 --init "$HOME/.config/sqlite/.sqliterc" "$@"
+}
+alias sqlite3=_sqlite3
