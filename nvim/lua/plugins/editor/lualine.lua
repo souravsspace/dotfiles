@@ -35,14 +35,12 @@ return {
         },
       },
       lualine_x = {},
-      lualine_y = {},
-      lualine_z = {
+      lualine_y = {
         {
           'datetime',
-          style = '%H:%M',
+          style = '%I:%M %p',
           separator = { left = '', right = '' },
           padding = { left = 1, right = 1, top = 1, bottom = 1 },
-          color = { bg = '#89b4fa' },
         },
       },
     },
