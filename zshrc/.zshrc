@@ -19,7 +19,6 @@ fi
 
 # source git and dotenv
 source ~/dotfiles/zshrc/.git.zshrc
-source ~/dotfiles/zshrc/.env
 
 # User configuration
 # Homebrew configuration
@@ -58,7 +57,7 @@ alias lt="eza --tree --level=2 --long --icons --git"
 alias ltree="eza --tree --level=2  --icons --git"
 
 # code editor
-alias vi="nvim"
+alias vi='dotenvx run -f "$HOME/dotfiles/.env" --quiet -- nvim'
 alias vscode="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
 alias cursor="/Applications/Cursor.app/Contents/MacOS/Cursor"
 

@@ -58,6 +58,8 @@
             "eza"
             "zoxide"
             "sqlite"
+            "dotenvx/brew/dotenvx"
+            "wget"
           ];
 
           # All GUI apps / fonts you had under `brew list --cask`
