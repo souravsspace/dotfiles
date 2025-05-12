@@ -186,3 +186,12 @@ _sqlite3() {
   command sqlite3 --init "$HOME/.config/sqlite/.sqliterc" "$@"
 }
 alias sqlite3=_sqlite3
+
+# git rebase editor & visual
+unset GIT_EDITOR
+export VISUAL="nvim"
+export EDITOR="nvim"
+
+# Use bat as the pager for Git commands
+export GIT_PAGER="bat --paging=always -l diff"     # Git-specific pager override :contentReference[oaicite:0]{index=0}
+export PAGER="bat --paging=always -l diff"         # Fallback for other tools that respect PAGER :contentReference[oaicite:1]{index=1}

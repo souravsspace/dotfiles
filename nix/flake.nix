@@ -49,6 +49,8 @@
           cocoapods
           rustup
           go
+          xh
+          atac
       ];
       
       homebrew = {
