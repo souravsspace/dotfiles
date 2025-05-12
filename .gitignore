@@ -15,6 +15,13 @@ zsh/*.zcompdump*
 **/Cargo.lock
 lazygit
 github-copilot
+ssh
+ssh/**
+.ssh
+.ssh/**
+atac
+atac/**
+
 
 # System
 .DS_Store

@@ -88,6 +88,9 @@ alias dpa="docker ps -a"
 alias dl="docker ps -l -q"
 alias dx="docker exec -it"
 
+# atac
+alias postman="atac -d ~/dotfiles/atac"
+
 # Dirs
 alias ..="cd .."
 alias ...="cd ../.."

@@ -17,49 +17,49 @@
 
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-      environment.systemPackages =
-        [ 
-            pkgs.neovim
-            pkgs.tmux
-            pkgs.mkalias
-        ];
+        environment.systemPackages = with pkgs; [
+          neovim
+          tmux
+          mkalias
+          bun
+          docker
+          fzf
+          git
+          lazygit
+          gnumake
+          nodejs
+          pnpm
+          starship
+          stylua
+          tree-sitter
+          zsh
+          oh-my-zsh 
+          bat
+          curl
+          stow
+          lazydocker
+          tree
+          eza
+          zoxide
+          sqlite
+          dotenvx
+          wget
+          rbenv
+          ripgrep
+          cocoapods
+          rustup
+          go
+      ];
       
       homebrew = {
           enable = true;
 
           # All CLI formulae you had under `brew list --formula`
           brews = [
-            "bun"
-            "cloudflared"
-            "docker"
-            "fzf"
-            "git"
-            "lazygit"
-            "cocoapods"
-            "make"
-            "neovim"
-            "node"
-            "npm"
-            "pnpm"
-            "starship"
-            "stylua"
-            "tmux"
-            "tree-sitter"
-            "wrangler"
-            "zsh-autosuggestions"
+            "zsh-autosuggestions" 
             "zsh-syntax-highlighting"
-            "bat"
-            "rbenv"
-            "curl"
-            "stow"
-            "ripgrep"
-            "lazydocker"
-            "tree"
-            "eza"
-            "zoxide"
-            "sqlite"
-            "dotenvx/brew/dotenvx"
-            "wget"
+            "wrangler"
+            "cloudflared"
           ];
 
           # All GUI apps / fonts you had under `brew list --cask`
