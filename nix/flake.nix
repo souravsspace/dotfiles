@@ -52,10 +52,17 @@
           xh
           atac
           age
-          tldr
+          tldr 
+          yazi
+          jellyfin-ffmpeg
+          jq
+          fd
+          resvg
+          imagemagick
+          poppler
       ];
       
-      homebrew = {
+        homebrew = {
           enable = true;
 
           # All CLI formulae you had under `brew list --formula`
@@ -64,6 +71,7 @@
             "zsh-syntax-highlighting"
             "wrangler"
             "cloudflared"
+            "sevenzip"
           ];
 
           # All GUI apps / fonts you had under `brew list --cask`
@@ -71,6 +79,7 @@
             "font-caskaydia-cove-nerd-font"
             "font-caskaydia-mono-nerd-font"
             "font-jetbrains-mono-nerd-font"
+            "font-symbols-only-nerd-font"
             "ngrok"
             "ghostty"
             "raycast"

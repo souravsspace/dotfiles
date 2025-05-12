@@ -200,3 +200,13 @@ export PAGER="bat --paging=always -l diff"         # Fallback for other tools th
 if command -v tldr >/dev/null 2>&1; then
   alias help='tldr'
 fi
+
+# yazi
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+          builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
