@@ -52,6 +52,8 @@
           xh
           atac
           age
+          thefuck
+          tldr
       ];
       
       homebrew = {
