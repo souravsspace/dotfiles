@@ -51,6 +51,7 @@
           go
           xh
           atac
+          age
       ];
       
       homebrew = {
