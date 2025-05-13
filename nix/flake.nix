@@ -60,6 +60,7 @@
           resvg
           imagemagick
           poppler
+          markdownlint-cli
       ];
       
         homebrew = {
@@ -82,11 +83,11 @@
             "font-symbols-only-nerd-font"
             "ngrok"
             "ghostty"
-            "raycast"
-            "rectangle"
             "visual-studio-code"
             "google-chrome"
             "obsidian"
+            "orbstack"
+            "raycast"
           ];
 
           onActivation.cleanup = "zap";

@@ -21,6 +21,8 @@ ssh/**
 .ssh/**
 atac
 atac/**
+thefuck
+thefuck/**
 
 
 # System

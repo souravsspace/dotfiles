@@ -210,3 +210,6 @@ function y() {
   fi
   rm -f -- "$tmp"
 }
+
+# darwin rebuild alias
+alias rebuild="darwin-rebuild switch --flake ~/dotfiles/nix#savory"

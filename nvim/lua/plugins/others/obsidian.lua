@@ -4,13 +4,7 @@ return {
     version = '*',
     lazy = true,
     ft = { 'markdown' },
-    event = {
-      -- If you want explicit file-based lazy-load, uncomment and adjust these globs:
-      -- 'BufReadPre ' .. vim.fn.expand('~/vaults/personal') .. '/**/*.md',
-      -- 'BufNewFile ' .. vim.fn.expand('~/vaults/personal') .. '/**/*.md',
-      -- 'BufReadPre ' .. vim.fn.expand('~/vaults/work') .. '/**/*.md',
-      -- 'BufNewFile ' .. vim.fn.expand('~/vaults/work') .. '/**/*.md',
-    },
+    event = {},
     cmd = {
       'ObsidianOpen',
       'ObsidianNew',
@@ -21,7 +15,6 @@ return {
       'ObsidianLinkNew',
     },
     keys = {
-      -- leader-o mappings for load-on-press
       { '<leader>oo', '<cmd>ObsidianOpen<CR>' },
       { '<leader>on', '<cmd>ObsidianNew<CR>' },
       { '<leader>os', '<cmd>ObsidianSearch<CR>' },
@@ -46,10 +39,7 @@ return {
         template = nil,
       },
       log_level = vim.log.levels.INFO,
-      completion = {
-        nvim_cmp = true,
-        min_chars = 2,
-      },
+      completion = { nvim_cmp = true, min_chars = 2 },
       mappings = {
         ['gf'] = {
           action = function()
@@ -72,10 +62,10 @@ return {
       },
       new_notes_location = 'notes_subdir',
       note_id_func = function(title)
-        local suffix = ''
-        if title then
-          suffix = title:gsub('%s+', '-'):gsub('[^A-Za-z0-9-]', ''):lower()
-        else
+        local suffix = title
+            and title:gsub('%s+', '-'):gsub('[^A-Za-z0-9-]', ''):lower()
+          or string.rep('', 4)
+        if not title then
           for _ = 1, 4 do
             suffix = suffix .. string.char(math.random(65, 90))
           end
@@ -83,8 +73,7 @@ return {
         return tostring(os.time()) .. '-' .. suffix
       end,
       note_path_func = function(spec)
-        local path = spec.dir / tostring(spec.id)
-        return path:with_suffix '.md'
+        return (spec.dir / tostring(spec.id)):with_suffix '.md'
       end,
       wiki_link_func = function(opts)
         return require('obsidian.util').wiki_link_id_prefix(opts)
@@ -133,30 +122,25 @@ return {
           return string.format('![%s](%s)', rel.name, rel)
         end,
       },
+      ui = { enable = true }, -- ensure UI features enabled
     },
     config = function(_, opts)
+      -- Set conceallevel BEFORE loading the plugin
+      vim.opt.conceallevel = 1
+      vim.opt.concealcursor = 'nc'
+
       require('obsidian').setup(opts)
-      -- Buffer-local keymaps for obsidian commands
+
       vim.api.nvim_create_autocmd('FileType', {
         pattern = 'markdown',
         callback = function()
           local buf = vim.api.nvim_get_current_buf()
-          local map_opts = { buffer = buf, silent = true }
-          vim.keymap.set('n', '<leader>oo', '<cmd>ObsidianOpen<CR>', map_opts)
-          vim.keymap.set('n', '<leader>on', '<cmd>ObsidianNew<CR>', map_opts)
-          vim.keymap.set('n', '<leader>os', '<cmd>ObsidianSearch<CR>', map_opts)
-          vim.keymap.set(
-            'n',
-            '<leader>ob',
-            '<cmd>ObsidianBacklinks<CR>',
-            map_opts
-          )
-          vim.keymap.set(
-            'n',
-            '<leader>ot',
-            '<cmd>ObsidianTemplate<CR>',
-            map_opts
-          )
+          local m = { buffer = buf, silent = true }
+          -- vim.keymap.set('n', '<leader>oo', '<cmd>ObsidianOpen<CR>', m)
+          -- vim.keymap.set('n', '<leader>on', '<cmd>ObsidianNew<CR>', m)
+          -- vim.keymap.set('n', '<leader>os', '<cmd>ObsidianSearch<CR>', m)
+          -- vim.keymap.set('n', '<leader>ob', '<cmd>ObsidianBacklinks<CR>', m)
+          -- vim.keymap.set('n', '<leader>ot', '<cmd>ObsidianTemplate<CR>', m)
         end,
       })
     end,
