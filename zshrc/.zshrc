@@ -23,13 +23,21 @@ export STARSHIP_CONFIG="${HOME}/dotfiles/starship/starship.toml"
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
-zinit light junegunn/fzf
 zinit light ajeetdsouza/zoxide
 zinit light Aloxaf/fzf-tab
+
+# Load completions
+autoload -Uz compinit && compinit
+zinit cdreplay -q
 
 # --- vi mode ---
 # zinit ice depth=1
 # zinit light jeffreytse/zsh-vi-mode
+
+# --- emacs mode ---
+bindkey -e
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
 
 # Source your custom Git helper functions
 source ~/dotfiles/zshrc/.git.zshrc
@@ -56,7 +64,6 @@ alias vscode="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/
 alias cursor="/Applications/Cursor.app/Contents/MacOS/Cursor"
 
 # Zoxide (directory jumper)
-# eval "$(zoxide init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
 # --- Git aliases & pager ---
@@ -88,7 +95,7 @@ alias dx="docker exec -it"
 fpath+=(/Users/sourav/.docker/completions)
 autoload -Uz compinit && compinit
 
-# atac (Postman CLI)
+# atac (Atac CLI)
 alias postman="atac -d ~/dotfiles/atac"
 
 # --- Directory aliases ---
@@ -99,15 +106,11 @@ alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
 # --- Zoxide alias ---
-alias cd="z"
 alias zz="z -"
+alias cd="z"
 
 # --- FZF defaults ---
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
-
-# --- SSH config ---
-export SSH_DIR="$HOME/dotfiles/ssh"
-alias ssh="ssh -F $SSH_DIR/config"
 
 # --- History & completion ---
 HISTSIZE=10000
@@ -125,8 +128,8 @@ setopt hist_find_no_dups
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:*' fzf-completion-opts '--ansi'
+zstyle ':fzf-tab:complete:*' fzf-preview 'eza --color=always --icons $realpath'
 
 autoload -Uz compinit && compinit
 
@@ -169,6 +172,9 @@ function y() {
   fi
   rm -f "$tmp"
 }
+
+# --- fzf ---
+eval "$(fzf --zsh)"
 
 # --- Darwin rebuild ---
 alias rebuild="darwin-rebuild switch --flake ~/dotfiles/nix#savory"
