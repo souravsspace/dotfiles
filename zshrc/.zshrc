@@ -98,6 +98,10 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
+# --- Zoxide alias ---
+alias cd="z"
+alias zz="z -"
+
 # --- FZF defaults ---
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
 
