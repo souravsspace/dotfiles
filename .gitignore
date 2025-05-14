@@ -6,6 +6,8 @@ zsh/.zsh_sessions
 .env
 *.env
 .env.*
+env
+env/**
 zsh/.env
 *.zcompdump*
 **/.env*
@@ -23,6 +25,8 @@ atac
 atac/**
 thefuck
 thefuck/**
+lazydocker
+lazydocker/**
 
 
 # System
