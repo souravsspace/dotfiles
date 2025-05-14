@@ -33,7 +33,6 @@
           stylua
           tree-sitter
           zsh
-          oh-my-zsh 
           bat
           curl
           stow
@@ -61,6 +60,7 @@
           imagemagick
           poppler
           markdownlint-cli
+          zinit
       ];
       
         homebrew = {
@@ -68,8 +68,6 @@
 
           # All CLI formulae you had under `brew list --formula`
           brews = [
-            "zsh-autosuggestions" 
-            "zsh-syntax-highlighting"
             "wrangler"
             "cloudflared"
             "sevenzip"
