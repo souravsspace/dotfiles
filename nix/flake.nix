@@ -61,6 +61,7 @@
           poppler
           markdownlint-cli
           zinit
+          portal
       ];
       
         homebrew = {
