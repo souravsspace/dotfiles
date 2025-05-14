@@ -28,6 +28,10 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light junegunn/fzf
 zinit light ajeetdsouza/zoxide
 
+# --- vi mode ---
+# zinit ice depth=1
+# zinit light jeffreytse/zsh-vi-mode
+
 # Source your custom Git helper functions
 source ~/dotfiles/zshrc/.git.zshrc
 
