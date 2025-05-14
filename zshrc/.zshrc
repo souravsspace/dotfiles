@@ -25,6 +25,7 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light junegunn/fzf
 zinit light ajeetdsouza/zoxide
+zinit light Aloxaf/fzf-tab
 
 # --- vi mode ---
 # zinit ice depth=1
@@ -55,7 +56,8 @@ alias vscode="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/
 alias cursor="/Applications/Cursor.app/Contents/MacOS/Cursor"
 
 # Zoxide (directory jumper)
-eval "$(zoxide init zsh)"
+# eval "$(zoxide init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
 
 # --- Git aliases & pager ---
 alias gc="git commit -m"
