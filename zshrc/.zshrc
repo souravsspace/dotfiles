@@ -109,6 +109,9 @@ alias ......="cd ../../../../.."
 alias zz="z -"
 alias cd="z"
 
+# --- aerospace ---
+alias aerospace='command aerospace --config $HOME/.config/aerospace/aerospace.toml'
+
 # --- FZF defaults ---
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
 

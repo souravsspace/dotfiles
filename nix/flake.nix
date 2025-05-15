@@ -67,11 +67,18 @@
         homebrew = {
           enable = true;
 
+          taps = [
+            "nikitabobko/tap"
+            "FelixKratz/formulae"
+          ];
+
           # All CLI formulae you had under `brew list --formula`
           brews = [
             "wrangler"
             "cloudflared"
             "sevenzip"
+            "sketchybar"
+            "c"
           ];
 
           # All GUI apps / fonts you had under `brew list --cask`
@@ -80,6 +87,9 @@
             "font-caskaydia-mono-nerd-font"
             "font-jetbrains-mono-nerd-font"
             "font-symbols-only-nerd-font"
+            "font-hack-nerd-font"
+            "sf-symbols"
+            "font-sf-pro"
             "ngrok"
             "ghostty"
             "visual-studio-code"
@@ -87,6 +97,8 @@
             "obsidian"
             "orbstack"
             "raycast"
+            "nikitabobko/tap/aerospace"
+            "telegram-desktop"
           ];
 
           onActivation.cleanup = "zap";

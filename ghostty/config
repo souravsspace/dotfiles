@@ -21,7 +21,6 @@ mouse-scroll-multiplier = 2
 window-padding-balance = true
 window-save-state = always
 window-colorspace = "display-p3"
-window-decoration = none
 
 ### tabs ###
 keybind = cmd+s>c=new_tab
@@ -54,7 +53,7 @@ keybind = cmd+s>e=equalize_splits
 ### title-bar ###
 title = " "
 macos-titlebar-proxy-icon = hidden
-macos-titlebar-style = transparent
+macos-titlebar-style = hidden
 
 ### keybindings ###
 keybind = cmd+s>r=reload_config
