@@ -179,5 +179,12 @@ function y() {
 # --- fzf ---
 eval "$(fzf --zsh)"
 
+# --- Aerospace + fzf ---
+ff() {
+  command aerospace list-windows --all \
+    | command fzf --bind 'enter:execute-silent(bash -c "aerospace focus --window-id {1}")+abort'
+}
+
+
 # --- Darwin rebuild ---
 alias rebuild="darwin-rebuild switch --flake ~/dotfiles/nix#savory"
