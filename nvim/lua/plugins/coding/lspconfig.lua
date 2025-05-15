@@ -296,7 +296,7 @@ return {
           },
         },
 
-        nil_ls = {},
+        -- nil_ls = {},
 
         dockerls = {},
         docker_compose_language_service = {},

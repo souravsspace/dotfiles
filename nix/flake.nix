@@ -99,6 +99,7 @@
             "raycast"
             "nikitabobko/tap/aerospace"
             "telegram-desktop"
+	    "zen"
           ];
 
           onActivation.cleanup = "zap";
