@@ -98,6 +98,8 @@
             "nikitabobko/tap/aerospace"
             "telegram-desktop"
 	    "zen"
+            "surfshark"
+            "OrbStack"
           ];
 
           onActivation.cleanup = "zap";
