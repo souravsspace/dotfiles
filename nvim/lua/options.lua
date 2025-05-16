@@ -62,6 +62,10 @@ vim.opt.cursorline = false
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- jj, jk to exit insert mode
+vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true })
+vim.keymap.set('i', 'jk', '<Esc>', { noremap = true, silent = true })
+
 -- Disable arrow keys in Normal, Insert, and Visual modes
 local opts = { noremap = true, silent = true }
 
