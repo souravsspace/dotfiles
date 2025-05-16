@@ -62,6 +62,7 @@
           markdownlint-cli
           zinit
           portal
+          gh
       ];
       
         homebrew = {
