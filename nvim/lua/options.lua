@@ -66,6 +66,10 @@ vim.opt.scrolloff = 10
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true })
 vim.keymap.set('i', 'jk', '<Esc>', { noremap = true, silent = true })
 
+-- cd, cu to zz mapping
+vim.keymap.set('n', 'cd', 'zz', { noremap = true, silent = true })
+vim.keymap.set('n', 'cu', 'zz', { noremap = true, silent = true })
+
 -- Disable arrow keys in Normal, Insert, and Visual modes
 local opts = { noremap = true, silent = true }
 
