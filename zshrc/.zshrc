@@ -18,12 +18,12 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Deleting zsl widget for starship error!
-zle -D zle-keymap-select
-
 # --- Starship prompt via Zinit ---
 eval "$(starship init zsh)" 
 export STARSHIP_CONFIG="${HOME}/dotfiles/starship/starship.toml"
+
+# Deleting zsl widget for starship error!
+zle -D zle-keymap-select
 
 # --- Other plugins using Zinit ---
 zinit light zsh-users/zsh-syntax-highlighting
