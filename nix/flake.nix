@@ -133,8 +133,6 @@
 
       system.defaults = {
         dock.autohide = true;
-        loginwindow.LoginwindowText = "sourav";
-        screencapture.location = "~/Pictures/screenshots";
       };
 
       # turn on nix & its daemon

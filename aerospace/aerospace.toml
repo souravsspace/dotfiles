@@ -177,8 +177,13 @@ alt-v = "exec-and-forget /usr/bin/open -a /Applications/Visual\\ Studio\\ Code.a
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
-r = ['flatten-workspace-tree', 'mode main'] # reset layout
-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+r   = [
+  'flatten-workspace-tree',
+  'layout tiles',
+  'balance-sizes',
+  'mode main'
+]
+f = ['layout floating tiling', 'mode main'] 
 backspace = ['close-all-windows-but-current', 'mode main']
 
 [workspace-to-monitor-force-assignment]
