@@ -63,17 +63,15 @@
           zinit
           portal
           gh
-      ];
+        ];
       
         homebrew = {
           enable = true;
-
           taps = [
             "nikitabobko/tap"
             "FelixKratz/formulae"
           ];
 
-          # All CLI formulae you had under `brew list --formula`
           brews = [
             "wrangler"
             "cloudflared"
@@ -82,7 +80,6 @@
             "c"
           ];
 
-          # All GUI apps / fonts you had under `brew list --cask`
           casks = [
             "font-caskaydia-cove-nerd-font"
             "font-caskaydia-mono-nerd-font"
@@ -133,8 +130,10 @@
             '';
 
       system.defaults = {
-          dock.autohide = true;
-        };
+        dock.autohide = true;
+        loginwindow.LoginwindowText = "sourav";
+        screencapture.location = "~/Pictures/screenshots";
+      };
 
       # turn on nix & its daemon
       nix.enable = true;
