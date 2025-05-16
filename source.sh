@@ -71,3 +71,20 @@ fi
 
 echo "All done!"
 
+# 7) Rebuild bat cache and reload Zsh configuration
+if command -v bat >/dev/null 2>&1; then
+  echo "Rebuilding bat cache"
+  bat cache --build
+else
+  echo "Warning: 'bat' command not found"
+fi
+
+ZSHRC="$HOME/.config/zshrc/.zshrc"
+if [ -f "$ZSHRC" ]; then
+  echo "Reloading Zsh configuration: $ZSHRC"
+  source "$ZSHRC"
+else
+  echo "Warning: Zshrc file not found at $ZSHRC"
+fi
+
+echo "All done!"
