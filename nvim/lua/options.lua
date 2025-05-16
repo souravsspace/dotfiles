@@ -62,16 +62,18 @@ vim.opt.cursorline = false
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+local opts = { noremap = true, silent = true }
+
 -- jj, jk to exit insert mode
-vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true })
-vim.keymap.set('i', 'jk', '<Esc>', { noremap = true, silent = true })
+vim.keymap.set('i', 'jj', '<Esc>', opts)
+vim.keymap.set('i', 'jk', '<Esc>', opts)
 
 -- cd, cu to zz mapping
-vim.keymap.set('n', 'cd', 'zz', { noremap = true, silent = true })
-vim.keymap.set('n', 'cu', 'zz', { noremap = true, silent = true })
+vim.keymap.set('n', 'cd', 'zz', opts)
+vim.keymap.set('n', 'cu', 'zz', opts)
 
--- Disable arrow keys in Normal, Insert, and Visual modes
-local opts = { noremap = true, silent = true }
+-- Toggle word wrap with 'tt' in Normal mode
+vim.keymap.set('n', 'mm', '<cmd>set wrap!<CR>', opts)
 
 -- Normal mode
 vim.keymap.set('n', '<Up>', '<Nop>', opts)
