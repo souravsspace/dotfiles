@@ -46,7 +46,6 @@ require('lazy').setup({
     { import = 'plugins.languages.rust' },
     { import = 'plugins.languages.sql' },
     { import = 'plugins.languages.tailwind' },
-    { import = 'plugins.languages.toml' },
     { import = 'plugins.languages.typescript' },
     { import = 'plugins.languages.yaml' },
     { import = 'plugins.linting.core' },
