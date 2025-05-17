@@ -46,7 +46,6 @@
           rbenv
           ripgrep
           cocoapods
-          rustup
           go
           xh
           atac
