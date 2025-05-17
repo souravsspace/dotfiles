@@ -37,10 +37,14 @@ autoload -Uz compinit && compinit
 zinit cdreplay -q
 
 # --- vi mode ---
+export ZVM_LAZY_KEYBINDINGS=false
+export KEYTIMEOUT=20
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
 bindkey -M viins '^p' history-search-backward
 bindkey -M viins '^n' history-search-forward
+bindkey -M viins 'jj' vi-cmd-mode
+bindkey -M viins 'jk' vi-cmd-mode
 
 # Source your custom Git helper functions
 source ~/dotfiles/zshrc/.git.zshrc
