@@ -51,7 +51,6 @@ return {
                 variableTypes = { enabled = true },
               },
             },
-            
           },
           keys = {
             {
@@ -111,6 +110,16 @@ return {
               '<cmd>VtsExec select_ts_version<cr>',
               desc = 'Select TS workspace version',
             },
+          },
+        },
+        emmet_ls = {
+          filetypes = {
+            'html',
+            'css',
+            'javascript',
+            'javascriptreact',
+            'typescript',
+            'typescriptreact',
           },
         },
       },
