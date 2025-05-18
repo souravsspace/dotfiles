@@ -33,8 +33,12 @@ zinit light Aloxaf/fzf-tab
 autoload -Uz compinit && compinit
 zinit cdreplay -q
 
+# Deleting zsl widget for starship error!
+zle -D zle-keymap-select
+
 # --- vi mode ---
 bindkey jj vi-cmd-mode
+bindkey jk vi-cmd-mode
 
 # --- emacs mode ---
 bindkey -e

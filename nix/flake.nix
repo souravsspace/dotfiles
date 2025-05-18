@@ -99,6 +99,7 @@
 	    "zen"
             "surfshark"
             "OrbStack"
+            "zed"
           ];
 
           onActivation.cleanup = "zap";
