@@ -22,9 +22,6 @@ source "${ZINIT_HOME}/zinit.zsh"
 eval "$(starship init zsh)" 
 export STARSHIP_CONFIG="${HOME}/dotfiles/starship/starship.toml"
 
-# Deleting zsl widget for starship error!
-zle -D zle-keymap-select
-
 # --- Other plugins using Zinit ---
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
@@ -37,14 +34,12 @@ autoload -Uz compinit && compinit
 zinit cdreplay -q
 
 # --- vi mode ---
-export ZVM_LAZY_KEYBINDINGS=false
-export KEYTIMEOUT=20
-zinit ice depth=1
-zinit light jeffreytse/zsh-vi-mode
-bindkey -M viins '^p' history-search-backward
-bindkey -M viins '^n' history-search-forward
-bindkey -M viins 'jj' vi-cmd-mode
-bindkey -M viins 'jk' vi-cmd-mode
+bindkey jj vi-cmd-mode
+
+# --- emacs mode ---
+bindkey -e
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
 
 # Source your custom Git helper functions
 source ~/dotfiles/zshrc/.git.zshrc
