@@ -68,6 +68,9 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set('i', 'jj', '<Esc>', opts)
 vim.keymap.set('i', 'jk', '<Esc>', opts)
 
+-- leader+p to paste from clipboard
+vim.keymap.set('x', '<leader>p', [["_dP]])
+
 -- cd, cu to zz mapping
 vim.keymap.set('n', 'cd', 'zz', opts)
 vim.keymap.set('n', 'cu', 'zz', opts)
