@@ -72,7 +72,7 @@ vim.keymap.set('i', 'jk', '<Esc>', opts)
 vim.keymap.set('n', 'cd', 'zz', opts)
 vim.keymap.set('n', 'cu', 'zz', opts)
 
--- Toggle word wrap with 'tt' in Normal mode
+-- Toggle word wrap with 'mm' in Normal mode
 vim.keymap.set('n', 'mm', '<cmd>set wrap!<CR>', opts)
 
 -- Normal mode
