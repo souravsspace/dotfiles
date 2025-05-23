@@ -68,6 +68,7 @@ return {
         },
         -- Fix the sources configuration
         sources = {
+          { name = 'copilot' },
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'buffer' },
@@ -96,6 +97,7 @@ return {
         formatting = {
           format = function(entry, vim_item)
             vim_item.menu = ({
+              copilot = '[Copilot]',
               nvim_lsp = '[LSP]',
               luasnip = '[Snippet]',
               buffer = '[Buffer]',

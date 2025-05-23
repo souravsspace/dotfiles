@@ -4,22 +4,21 @@ return {
     event = 'InsertEnter',
     config = function()
       require('copilot').setup {
+        panel = { enabled = false },
         suggestion = {
-          enabled = true,
-          auto_trigger = true,
+          enabled = false,
+          auto_trigger = false,
           debounce = 20, -- Faster response time (default: 75)
           throttle = 60, -- Lower refresh interval (default: 100)
-          keymap = {
-            accept = '<Tab>', -- Use Tab for full acceptance
-            accept_word = '<M-Right>', -- Alt+Right for word acceptance
-            accept_line = '<M-Down>',
-            next = '<M-j>',
-            prev = '<M-k>',
-            dismiss = '<M-h>',
-          },
         },
-        panel = { enabled = false },
       }
+    end,
+  },
+  {
+    'zbirenbaum/copilot-cmp',
+    after = { 'copilot.lua', 'nvim-cmp' },
+    config = function()
+      require('copilot_cmp').setup()
     end,
   },
   {
