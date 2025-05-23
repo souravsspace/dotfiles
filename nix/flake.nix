@@ -62,6 +62,7 @@
           zinit
           portal
           gh
+          redis
         ];
       
         homebrew = {
@@ -100,6 +101,7 @@
             "surfshark"
             "OrbStack"
             "zed"
+            "redis-insight"
           ];
 
           onActivation.cleanup = "zap";
