@@ -22,6 +22,9 @@ source "${ZINIT_HOME}/zinit.zsh"
 eval "$(starship init zsh)" 
 export STARSHIP_CONFIG="${HOME}/dotfiles/starship/starship.toml"
 
+# --- nodejs setup ---
+export PATH="$HOME/.npm-global/bin:$PATH"
+
 # --- Other plugins using Zinit ---
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
