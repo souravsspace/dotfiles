@@ -35,6 +35,7 @@ require('lazy').setup({
     { import = 'plugins.editor.which-key' },
     { import = 'plugins.editor.cursor' },
     -- { import = 'plugins.editor.visual-multi' },
+    -- { import = 'plugins.editor.neoclip' },
     { import = 'plugins.formatting.conform' },
     { import = 'plugins.formatting.prettier' },
     { import = 'plugins.languages.astro' },
