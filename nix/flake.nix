@@ -63,6 +63,7 @@
           portal
           gh
           redis
+          uv
         ];
       
         homebrew = {
