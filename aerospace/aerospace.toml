@@ -146,11 +146,6 @@ alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
-alt-5 = 'workspace 5'
-alt-6 = 'workspace 6'
-alt-7 = 'workspace 7'
-alt-8 = 'workspace 8'
-alt-9 = 'workspace 9'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1 --focus-follows-window'
@@ -171,6 +166,7 @@ alt-o = "exec-and-forget /usr/bin/open -a /Applications/Obsidian.app"
 alt-s = "exec-and-forget /usr/bin/open -a /Applications/Surfshark.app"
 alt-t = "exec-and-forget /usr/bin/open -a /Applications/Telegram\\ Desktop.app"
 alt-v = "exec-and-forget /usr/bin/open -a /Applications/Visual\\ Studio\\ Code.app"
+alt-w = "exec-and-forget /usr/bin/open -a /Applications/WhatsApp.app"
 
 
 # 'service' binding mode declaration.
@@ -191,8 +187,3 @@ backspace = ['close-all-windows-but-current', 'mode main']
 2 = "^Q27G4$"
 3 = "^Color LCD$"
 4 = "^Q27G4$"
-5 = "^Color LCD$"
-6 = "^Q27G4$"
-7 = "^Color LCD$"
-8 = "^Q27G4$"
-9 = "^Color LCD$"
