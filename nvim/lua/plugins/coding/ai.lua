@@ -27,22 +27,22 @@ return {
     version = '*', -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
     opts = {
       provider = 'qwen', -- Set the default provider to 'claude'
-      auto_suggestions_provider = 'copilot',
-      behaviour = {
-        auto_suggestions = true,
-      },
-      gemini = {
-        api_key = vim.env.GEMINI_API_KEY,
-        model = 'models/gemini-2.5-flash-preview-04-17',
-      },
-      anthropic = {
-        api_key = vim.env.ANTHROPIC_API_KEY,
-        model = 'claude-3-7-sonnet-20250219',
-      },
-      web_search_engine = {
-        provider = 'google', -- Set Google as the web search provider
-      },
-      vendors = {
+      providers = {
+        auto_suggestions_provider = 'copilot',
+        behaviour = {
+          auto_suggestions = true,
+        },
+        gemini = {
+          api_key = vim.env.GEMINI_API_KEY,
+          model = 'models/gemini-2.5-flash-preview-04-17',
+        },
+        anthropic = {
+          api_key = vim.env.ANTHROPIC_API_KEY,
+          model = 'claude-3-7-sonnet-20250219',
+        },
+        web_search_engine = {
+          provider = 'google', -- Set Google as the web search provider
+        },
         qwen = {
           __inherited_from = 'openai',
           api_key_name = 'DASHSCOPE_API_KEY',
