@@ -58,6 +58,8 @@ require('lazy').setup({
     { import = 'plugins.ui.dressing' },
     { import = 'plugins.ui.treesitter-context' },
     { import = 'plugins.util.mini-hipatterns' },
+    -- { import = 'plugins.others.precognition' },
+    { import = 'plugins.others.typr' },
   },
   defaults = {},
   performance = {
