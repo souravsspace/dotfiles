@@ -78,20 +78,20 @@ vim.keymap.set('n', 'cu', 'zz', opts)
 -- Toggle word wrap with 'mm' in Normal mode
 vim.keymap.set('n', 'mm', '<cmd>set wrap!<CR>', opts)
 
--- Normal mode
-vim.keymap.set('n', '<Up>', '<Nop>', opts)
-vim.keymap.set('n', '<Down>', '<Nop>', opts)
-vim.keymap.set('n', '<Left>', '<Nop>', opts)
-vim.keymap.set('n', '<Right>', '<Nop>', opts)
-
--- Insert mode
-vim.keymap.set('i', '<Up>', '<Nop>', opts)
-vim.keymap.set('i', '<Down>', '<Nop>', opts)
-vim.keymap.set('i', '<Left>', '<Nop>', opts)
-vim.keymap.set('i', '<Right>', '<Nop>', opts)
-
--- Visual mode
-vim.keymap.set('v', '<Up>', '<Nop>', opts)
-vim.keymap.set('v', '<Down>', '<Nop>', opts)
-vim.keymap.set('v', '<Left>', '<Nop>', opts)
-vim.keymap.set('v', '<Right>', '<Nop>', opts)
+-- -- Normal mode
+-- vim.keymap.set('n', '<Up>', '<Nop>', opts)
+-- vim.keymap.set('n', '<Down>', '<Nop>', opts)
+-- vim.keymap.set('n', '<Left>', '<Nop>', opts)
+-- vim.keymap.set('n', '<Right>', '<Nop>', opts)
+--
+-- -- Insert mode
+-- vim.keymap.set('i', '<Up>', '<Nop>', opts)
+-- vim.keymap.set('i', '<Down>', '<Nop>', opts)
+-- vim.keymap.set('i', '<Left>', '<Nop>', opts)
+-- vim.keymap.set('i', '<Right>', '<Nop>', opts)
+--
+-- -- Visual mode
+-- vim.keymap.set('v', '<Up>', '<Nop>', opts)
+-- vim.keymap.set('v', '<Down>', '<Nop>', opts)
+-- vim.keymap.set('v', '<Left>', '<Nop>', opts)
+-- vim.keymap.set('v', '<Right>', '<Nop>', opts)
