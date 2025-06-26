@@ -10,8 +10,8 @@ font-size = 15
 font-family = "JetBrains Mono"
 
 ### Background ###
-background-opacity = 1
-background-blur-radius = 20
+background-opacity = 0.95
+background-blur-radius = 40
 
 ### mouse ###
 mouse-hide-while-typing = true
