@@ -8,6 +8,7 @@ return {
     optional = true,
     ---@param opts ConformOpts
     opts = function(_, opts)
+      local supported = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'json', 'jsonc' }
       opts.formatters_by_ft = opts.formatters_by_ft or {}
       for _, ft in ipairs(supported) do
         opts.formatters_by_ft[ft] = opts.formatters_by_ft[ft] or {}
