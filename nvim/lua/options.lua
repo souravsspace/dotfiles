@@ -95,3 +95,6 @@ vim.keymap.set('n', 'mm', '<cmd>set wrap!<CR>', opts)
 -- vim.keymap.set('v', '<Down>', '<Nop>', opts)
 -- vim.keymap.set('v', '<Left>', '<Nop>', opts)
 -- vim.keymap.set('v', '<Right>', '<Nop>', opts)
+
+-- Enable this option to avoid conflicts with Prettier.
+vim.g.lazyvim_prettier_needs_config = true
