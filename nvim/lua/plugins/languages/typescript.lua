@@ -112,16 +112,14 @@ return {
             },
           },
         },
-        emmet_ls = {
-          filetypes = {
-            'html',
-            'css',
-            'javascript',
-            'javascriptreact',
-            'typescript',
-            'typescriptreact',
-          },
-        },
+        -- emmet_ls = {
+        --   filetypes = {
+        --     'html',
+        --     'css',
+        --     'javascriptreact',
+        --     'typescriptreact',
+        --   },
+        -- },
       },
       setup = {
         --- @deprecated -- tsserver renamed to ts_ls but not yet released, so keep this for now
