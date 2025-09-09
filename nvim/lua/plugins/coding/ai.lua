@@ -47,7 +47,7 @@ return {
           __inherited_from = 'openai',
           api_key_name = 'DASHSCOPE_API_KEY',
           endpoint = 'https://dashscope-intl.aliyuncs.com/compatible-mode/v1',
-          model = 'qwen-max-2025-01-25',
+          model = 'qwen3-coder-plus',
         },
       },
 

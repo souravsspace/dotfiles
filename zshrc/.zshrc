@@ -197,3 +197,5 @@ ff() {
 
 # --- Darwin rebuild ---
 alias rebuild="darwin-rebuild switch --flake ~/dotfiles/nix#savory"
+
+. "$HOME/.local/bin/env"
