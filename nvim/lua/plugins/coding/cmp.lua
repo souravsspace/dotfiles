@@ -79,6 +79,31 @@ return {
           completeopt = 'menu,menuone,noinsert',
         },
 
+        -- Window configuration to unify completion and documentation
+        window = {
+          completion = cmp.config.window.bordered({
+            border = 'rounded',
+            winhighlight = 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None',
+            max_width = 80,
+            max_height = 20,
+            scrollbar = true,
+          }),
+          documentation = cmp.config.window.bordered({
+            border = 'rounded',
+            winhighlight = 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None',
+            max_width = 80,
+            max_height = 20,
+            scrollbar = true,
+          }),
+        },
+
+        -- Experimental features for better window management
+        experimental = {
+          ghost_text = {
+            hl_group = 'Comment',
+          },
+        },
+
         -- Keep your existing mapping configuration
         mapping = cmp.mapping.preset.insert {
           ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -106,6 +131,16 @@ return {
             })[entry.source.name]
             return vim_item
           end,
+        },
+
+        -- Performance and behavior settings
+        performance = {
+          debounce = 60,
+          throttle = 30,
+          fetching_timeout = 500,
+          confirm_resolve_timeout = 80,
+          async_budget = 1,
+          max_view_entries = 200,
         },
       }
     end,

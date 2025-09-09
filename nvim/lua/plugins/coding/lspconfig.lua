@@ -30,6 +30,59 @@ return {
       'hrsh7th/cmp-nvim-lsp',
     },
     config = function()
+      -- Configure LSP floating windows to work better with completion
+      local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+      function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+        opts = opts or {}
+        opts.border = opts.border or 'rounded'
+        opts.max_width = opts.max_width or 80
+        opts.max_height = opts.max_height or 20
+        return orig_util_open_floating_preview(contents, syntax, opts, ...)
+      end
+
+      -- Configure diagnostic floating windows
+      vim.diagnostic.config({
+        float = {
+          border = 'rounded',
+          max_width = 80,
+          max_height = 20,
+          focusable = false,
+          close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+          scope = 'cursor',
+          source = 'always',
+        },
+        virtual_text = {
+          spacing = 4,
+          source = 'if_many',
+          prefix = '●',
+        },
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+        severity_sort = true,
+      })
+
+      -- Set up better hover and signature help behavior
+      vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+        vim.lsp.handlers.hover, {
+          border = 'rounded',
+          max_width = 80,
+          max_height = 20,
+          focusable = false,
+          close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+        }
+      )
+
+      vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+        vim.lsp.handlers.signature_help, {
+          border = 'rounded',
+          max_width = 80,
+          max_height = 20,
+          focusable = false,
+          close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+        }
+      )
+
       -- Brief aside: **What is LSP?**
       --
       -- LSP is an initialism you've probably heard, but might not understand what it is.
