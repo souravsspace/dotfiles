@@ -56,7 +56,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && echo "$HOME/.nvm" || echo "$XD
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # --- Aliases & UI tools ---
-alias ll="ls -la"
 alias cl='clear'
 alias la=tree
 export BAT_THEME="Catppuccin Mocha"
@@ -102,7 +101,6 @@ alias dl="docker ps -l -q"
 alias dx="docker exec -it"
 
 fpath+=(/Users/sourav/.docker/completions)
-autoload -Uz compinit && compinit
 
 # atac (Atac CLI)
 alias postman="atac -d ~/dotfiles/atac"
@@ -143,7 +141,6 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:*' fzf-completion-opts '--ansi'
 zstyle ':fzf-tab:complete:*' fzf-preview 'eza --color=always --icons $realpath'
 
-autoload -Uz compinit && compinit
 
 # --- TMUX setup ---
 export TMUX_TMPDIR="$HOME/.tmux-log"

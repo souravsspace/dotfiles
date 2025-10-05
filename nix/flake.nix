@@ -64,6 +64,11 @@
           gh
           redis
           uv
+          biome
+          ollama
+          claude-code
+          yarn
+          turbo
         ];
       
         homebrew = {
@@ -77,8 +82,7 @@
             "wrangler"
             "cloudflared"
             "sevenzip"
-            "sketchybar"
-            "c"
+            "specify"
           ];
 
           casks = [
@@ -100,9 +104,16 @@
             "telegram-desktop"
 	    "zen"
             "surfshark"
-            "OrbStack"
             "zed"
             "redis-insight"
+            "webstorm"
+            "figma"
+            "windsurf"
+            "claude"
+            "chatgpt"
+            "whatsapp"
+            "messenger"
+            "motrix"
           ];
 
           onActivation.cleanup = "zap";
