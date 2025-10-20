@@ -18,6 +18,7 @@ local supported = {
 }
 
 local excluded_filetypes = {
+  'dbui',
   'sql',
   'mysql',
   'plsql',
