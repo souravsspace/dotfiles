@@ -83,6 +83,8 @@
             "cloudflared"
             "sevenzip"
             "specify"
+            "mysql-client"
+            "libpq"
           ];
 
           casks = [

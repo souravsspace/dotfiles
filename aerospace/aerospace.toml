@@ -60,6 +60,10 @@ if.app-name-regex-substring = 'claude'
 run = 'layout floating'
 
 [[on-window-detected]]
+if.app-name-regex-substring = 'qwen'
+run = 'layout floating'
+
+[[on-window-detected]]
 if.app-name-regex-substring = 'gpt'
 run = 'layout floating'
 

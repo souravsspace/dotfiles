@@ -162,6 +162,10 @@ _sqlite3() {
 }
 alias sqlite3=_sqlite3
 
+# --- pg, mysql wrappers ---
+export PATH="$(brew --prefix libpq)/bin:$PATH"
+export PATH="$(brew --prefix mysql-client)/bin:$PATH"
+
 # --- Editor settings ---
 unset GIT_EDITOR
 export VISUAL="nvim"
