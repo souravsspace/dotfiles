@@ -15,7 +15,13 @@ local supported = {
   'typescriptreact',
   'vue',
   'yaml',
+}
+
+local excluded_filetypes = {
   'sql',
+  'mysql',
+  'plsql',
+  'sqlite',
 }
 
 return {
@@ -46,6 +52,11 @@ return {
 
         if vim.tbl_contains(supported, filetype) then
           return { formatters = { 'prettier' }, timeout_ms = 2000 }
+        end
+
+        -- Exclude certain filetypes from LSP formatting fallback
+        if vim.tbl_contains(excluded_filetypes, filetype) then
+          return
         end
 
         -- Fallback to default LSP formatting

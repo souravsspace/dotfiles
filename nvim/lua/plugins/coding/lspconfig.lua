@@ -41,13 +41,18 @@ return {
       end
 
       -- Configure diagnostic floating windows
-      vim.diagnostic.config({
+      vim.diagnostic.config {
         float = {
           border = 'rounded',
           max_width = 80,
           max_height = 20,
           focusable = false,
-          close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+          close_events = {
+            'BufLeave',
+            'CursorMoved',
+            'InsertEnter',
+            'FocusLost',
+          },
           scope = 'cursor',
           source = 'always',
         },
@@ -60,28 +65,36 @@ return {
         underline = true,
         update_in_insert = false,
         severity_sort = true,
-      })
+      }
 
       -- Set up better hover and signature help behavior
-      vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-        vim.lsp.handlers.hover, {
+      vim.lsp.handlers['textDocument/hover'] =
+        vim.lsp.with(vim.lsp.handlers.hover, {
           border = 'rounded',
           max_width = 80,
           max_height = 20,
           focusable = false,
-          close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-        }
-      )
+          close_events = {
+            'BufLeave',
+            'CursorMoved',
+            'InsertEnter',
+            'FocusLost',
+          },
+        })
 
-      vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-        vim.lsp.handlers.signature_help, {
+      vim.lsp.handlers['textDocument/signatureHelp'] =
+        vim.lsp.with(vim.lsp.handlers.signature_help, {
           border = 'rounded',
           max_width = 80,
           max_height = 20,
           focusable = false,
-          close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-        }
-      )
+          close_events = {
+            'BufLeave',
+            'CursorMoved',
+            'InsertEnter',
+            'FocusLost',
+          },
+        })
 
       -- Brief aside: **What is LSP?**
       --
@@ -361,9 +374,7 @@ return {
         'stylua',
         'tailwindcss-language-server',
         'vtsls',
-        'sqlfluff',
         'hadolint',
-        'sqls',
       })
 
       require('mason-tool-installer').setup {
