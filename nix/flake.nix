@@ -69,6 +69,7 @@
           claude-code
           yarn
           turbo
+          pgcli
         ];
       
         homebrew = {
