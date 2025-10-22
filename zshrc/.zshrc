@@ -165,6 +165,8 @@ alias sqlite3=_sqlite3
 # --- pg, mysql wrappers ---
 export PATH="$(brew --prefix libpq)/bin:$PATH"
 export PATH="$(brew --prefix mysql-client)/bin:$PATH"
+alias pg="pgcli"
+
 
 # --- Editor settings ---
 unset GIT_EDITOR
