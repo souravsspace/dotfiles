@@ -85,6 +85,7 @@
             "specify"
             "mysql-client"
             "libpq"
+            "postgresql"
           ];
 
           casks = [
