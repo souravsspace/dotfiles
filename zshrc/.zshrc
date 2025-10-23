@@ -166,7 +166,8 @@ alias sqlite3=_sqlite3
 export PATH="$(brew --prefix libpq)/bin:$PATH"
 export PATH="$(brew --prefix mysql-client)/bin:$PATH"
 alias pg="pgcli"
-
+alias sq="litecli"
+alias ms="mycli"
 
 # --- Editor settings ---
 unset GIT_EDITOR

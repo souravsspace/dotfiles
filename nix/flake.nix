@@ -70,8 +70,10 @@
           yarn
           turbo
           pgcli
+          litecli
+          mycli
         ];
-      
+
         homebrew = {
           enable = true;
           taps = [
