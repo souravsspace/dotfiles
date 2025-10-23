@@ -33,6 +33,8 @@ return {
           ['.env'] = { glyph = '󰟋', hl = 'MiniIconsOrange' },
           ['.env.local'] = { glyph = '󰟋', hl = 'MiniIconsYellow' },
           ['.env.example'] = { glyph = '󰟋', hl = 'MiniIconsBlue' },
+          ['.env.prd'] = { glyph = '󰟋', hl = 'MiniIconsYellow' },
+          ['.go-version'] = { glyph = '', hl = 'MiniIconsBlue' },
         },
         extension = {},
         filetype = {},

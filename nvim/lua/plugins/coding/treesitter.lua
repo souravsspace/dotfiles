@@ -32,6 +32,11 @@ return {
         'json5',
         'nix',
         'dockerfile',
+        'cmake',
+        'go',
+        'gomod',
+        'gowork',
+        'gosum',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
