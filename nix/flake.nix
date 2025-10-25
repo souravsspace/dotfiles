@@ -17,115 +17,116 @@
 
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-        environment.systemPackages = with pkgs; [
-          neovim
-          tmux
-          mkalias
-          bun
-          docker
-          fzf
-          git
-          lazygit
-          gnumake
-          nodejs
-          pnpm
-          starship
-          stylua
-          tree-sitter
-          zsh
-          bat
-          curl
-          stow
-          lazydocker
-          tree
-          eza
-          zoxide
-          sqlite
-          dotenvx
-          wget
-          rbenv
-          ripgrep
-          cocoapods
-          go
-          xh
-          atac
-          age
-          tldr 
-          yazi
-          jellyfin-ffmpeg
-          jq
-          fd
-          resvg
-          imagemagick
-          poppler
-          markdownlint-cli
-          zinit
-          portal
-          gh
-          redis
-          uv
-          biome
-          ollama
-          claude-code
-          yarn
-          turbo
-          pgcli
-          litecli
-          mycli
+      environment.systemPackages = with pkgs; [
+        neovim
+        tmux
+        mkalias
+        bun
+        docker
+        fzf
+        git
+        lazygit
+        gnumake
+        nodejs
+        pnpm
+        starship
+        stylua
+        tree-sitter
+        zsh
+        bat
+        curl
+        stow
+        lazydocker
+        tree
+        eza
+        zoxide
+        sqlite
+        dotenvx
+        wget
+        rbenv
+        ripgrep
+        cocoapods
+        go
+        xh
+        atac
+        age
+        tldr 
+        yazi
+        jellyfin-ffmpeg
+        jq
+        fd
+        resvg
+        imagemagick
+        poppler
+        markdownlint-cli
+        zinit
+        portal
+        gh
+        redis
+        uv
+        biome
+        ollama
+        claude-code
+        yarn
+        turbo
+        pgcli
+        litecli
+        mycli
+      ];
+
+      homebrew = {
+        enable = true;
+        taps = [
+          "nikitabobko/tap"
+          "FelixKratz/formulae"
+          "sst/tap"
         ];
 
-        homebrew = {
-          enable = true;
-          taps = [
-            "nikitabobko/tap"
-            "FelixKratz/formulae"
-          ];
+        brews = [
+          "wrangler"
+          "cloudflared"
+          "sevenzip"
+          "specify"
+          "mysql-client"
+          "libpq"
+          "postgresql"
+          "sst/tap/opencode"
+        ];
 
-          brews = [
-            "wrangler"
-            "cloudflared"
-            "sevenzip"
-            "specify"
-            "mysql-client"
-            "libpq"
-            "postgresql"
-            "opencode"
-          ];
+        casks = [
+          "font-caskaydia-cove-nerd-font"
+          "font-caskaydia-mono-nerd-font"
+          "font-jetbrains-mono-nerd-font"
+          "font-symbols-only-nerd-font"
+          "font-hack-nerd-font"
+          "sf-symbols"
+          "font-sf-pro"
+          "ngrok"
+          "ghostty"
+          "visual-studio-code"
+          "google-chrome"
+          "obsidian"
+          "orbstack"
+          "raycast"
+          "nikitabobko/tap/aerospace"
+          "telegram-desktop"
+          "zen"
+          "surfshark"
+          "zed"
+          "redis-insight"
+          "webstorm"
+          "figma"
+          "windsurf"
+          "claude"
+          "chatgpt"
+          "whatsapp"
+          "messenger"
+          "motrix"
+        ];
 
-          casks = [
-            "font-caskaydia-cove-nerd-font"
-            "font-caskaydia-mono-nerd-font"
-            "font-jetbrains-mono-nerd-font"
-            "font-symbols-only-nerd-font"
-            "font-hack-nerd-font"
-            "sf-symbols"
-            "font-sf-pro"
-            "ngrok"
-            "ghostty"
-            "visual-studio-code"
-            "google-chrome"
-            "obsidian"
-            "orbstack"
-            "raycast"
-            "nikitabobko/tap/aerospace"
-            "telegram-desktop"
-	    "zen"
-            "surfshark"
-            "zed"
-            "redis-insight"
-            "webstorm"
-            "figma"
-            "windsurf"
-            "claude"
-            "chatgpt"
-            "whatsapp"
-            "messenger"
-            "motrix"
-          ];
-
-          onActivation.cleanup = "zap";
-          onActivation.autoUpdate = true;
-          onActivation.upgrade = true;
+        onActivation.cleanup = "zap";
+        onActivation.autoUpdate = true;
+        onActivation.upgrade = true;
       };
 
       fonts.packages = [
@@ -151,6 +152,9 @@
           ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
         done
             '';
+
+      system.primaryUser = "sourav";
+
 
       system.defaults = {
         dock.autohide = true;
