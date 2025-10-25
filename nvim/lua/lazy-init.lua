@@ -33,8 +33,6 @@ require('lazy').setup({
     { import = 'plugins.editor.ufo' },
     { import = 'plugins.editor.which-key' },
     { import = 'plugins.editor.cursor' },
-    -- { import = 'plugins.editor.visual-multi' },
-    -- { import = 'plugins.editor.neoclip' },
     { import = 'plugins.formatting.conform' },
     { import = 'plugins.formatting.prettier' },
     { import = 'plugins.formatting.biome' },
@@ -57,8 +55,6 @@ require('lazy').setup({
     { import = 'plugins.ui.dressing' },
     { import = 'plugins.ui.treesitter-context' },
     { import = 'plugins.util.mini-hipatterns' },
-    -- { import = 'plugins.others.precognition' },
-    { import = 'plugins.others.typr' },
   },
   defaults = {},
   performance = {
