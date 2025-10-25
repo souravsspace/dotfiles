@@ -89,6 +89,7 @@
             "mysql-client"
             "libpq"
             "postgresql"
+            "opencode"
           ];
 
           casks = [
