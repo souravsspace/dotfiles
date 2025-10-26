@@ -1,3 +1,5 @@
+local opts = { noremap = true, silent = true }
+
 -- Disable command line
 vim.opt.cmdheight = 0
 
@@ -62,8 +64,6 @@ vim.opt.cursorline = false
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
-local opts = { noremap = true, silent = true }
-
 -- jj, jk to exit insert mode
 vim.keymap.set('i', 'jj', '<Esc>', opts)
 vim.keymap.set('i', 'jk', '<Esc>', opts)
@@ -106,3 +106,9 @@ vim.keymap.set('n', 'B', '_', opts) -- Move to beginning of line
 -- Block cursor in insert mode
 vim.opt.guicursor =
   'n-v-c:block,i-ci-ve:block-blinkwait700-blinkoff400-blinkon250,r-cr:hor20,o:hor50'
+
+-- searching and centering pain
+vim.keymap.set('n', 'n', 'nzzzv', opts)
+vim.keymap.set('n', 'N', 'Nzzzv', opts)
+vim.keymap.set('n', '*', '*zzzv', opts)
+vim.keymap.set('n', '#', '#zzzv', opts)
