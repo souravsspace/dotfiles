@@ -102,3 +102,7 @@ vim.g.lazyvim_prettier_needs_config = true
 -- Normal mode shortcuts for line navigation
 vim.keymap.set('n', 'E', '$', opts) -- Move to end of line
 vim.keymap.set('n', 'B', '_', opts) -- Move to beginning of line
+
+-- Block cursor in insert mode
+vim.opt.guicursor =
+  'n-v-c:block,i-ci-ve:block-blinkwait700-blinkoff400-blinkon250,r-cr:hor20,o:hor50'
