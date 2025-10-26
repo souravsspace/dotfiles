@@ -186,6 +186,7 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 alt-shift-semicolon = 'mode service'
 alt-shift-enter = 'mode apps'
 
+alt-b = "exec-and-forget /usr/bin/open -a /Applications/Helium.app"
 alt-c = "exec-and-forget /usr/bin/open -a /Applications/Claude.app"
 alt-d = "exec-and-forget /usr/bin/open -a /Applications/OrbStack.app"
 alt-g = "exec-and-forget /usr/bin/open -a /Applications/Ghostty.app"
@@ -194,7 +195,7 @@ alt-s = "exec-and-forget /usr/bin/open -a /Applications/Surfshark.app"
 alt-t = "exec-and-forget /usr/bin/open -a /Applications/Telegram\\ Desktop.app"
 alt-v = "exec-and-forget /usr/bin/open -a /Applications/Visual\\ Studio\\ Code.app"
 alt-w = "exec-and-forget /usr/bin/open -a /Applications/WhatsApp.app"
-
+alt-z = "exec-and-forget /usr/bin/open -a /Applications/Zed.app"
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
