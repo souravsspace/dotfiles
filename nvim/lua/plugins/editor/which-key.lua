@@ -38,7 +38,6 @@ return {
           F12 = '<F12>',
         },
       },
-
       -- Document existing key chains
       spec = {
         {
@@ -49,18 +48,18 @@ return {
         {
           '<leader>b',
           group = 'Buffers',
-          icon = { icon = '', color = 'yellow' },
+          icon = { icon = '', color = 'yellow' },
         },
         {
           '<leader>c',
           group = 'Code',
           mode = { 'n', 'x' },
-          icon = { icon = '', color = 'green' },
+          icon = { icon = '', color = 'green' },
         },
         {
           '<leader>d',
           group = 'Debug',
-          icon = { icon = '', color = 'red' },
+          icon = { icon = '', color = 'red' },
         },
         {
           '<leader>f',
@@ -88,14 +87,25 @@ return {
           icon = { icon = '󰊢', color = 'orange' },
         },
         {
+          '<leader>h',
+          group = 'Harpoon',
+          icon = { icon = '󱡀', color = 'azure' },
+        },
+        -- Hide Harpoon number keys from which-key menu
+        { '<leader>1', hidden = true },
+        { '<leader>2', hidden = true },
+        { '<leader>3', hidden = true },
+        { '<leader>4', hidden = true },
+        { '<leader>5', hidden = true },
+        {
           '<leader>o',
           group = 'Overseer',
-          icon = { icon = '', color = 'red' },
+          icon = { icon = '', color = 'red' },
         },
         {
           '<leader>s',
           group = 'Search',
-          icon = { icon = '', color = 'yellow' },
+          icon = { icon = '', color = 'yellow' },
         },
         {
           '<leader>t',
@@ -106,7 +116,7 @@ return {
           'gz',
           group = 'Surround',
           mode = { 'n', 'v' },
-          icon = { icon = '', color = 'red' },
+          icon = { icon = '', color = 'red' },
         },
       },
     },

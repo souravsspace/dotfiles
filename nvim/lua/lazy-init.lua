@@ -33,6 +33,7 @@ require('lazy').setup({
     { import = 'plugins.editor.tmux' },
     { import = 'plugins.editor.ufo' },
     { import = 'plugins.editor.which-key' },
+    { import = 'plugins.editor.harpoon' },
     { import = 'plugins.editor.cursor' },
     { import = 'plugins.formatting.conform' },
     { import = 'plugins.formatting.prettier' },
