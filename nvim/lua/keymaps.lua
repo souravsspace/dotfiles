@@ -57,4 +57,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- Better indenting
 keymap.set('v', '<', '<gv')
 keymap.set('v', '>', '>gv')
-
