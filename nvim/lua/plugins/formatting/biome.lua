@@ -5,29 +5,73 @@ return {
   },
   {
     'stevearc/conform.nvim',
-    optional = true,
-    ---@param opts ConformOpts
-    opts = function(_, opts)
-      local supported = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'json', 'jsonc' }
-      opts.formatters_by_ft = opts.formatters_by_ft or {}
-      for _, ft in ipairs(supported) do
-        opts.formatters_by_ft[ft] = opts.formatters_by_ft[ft] or {}
-        table.insert(opts.formatters_by_ft[ft], 'biome')
+    event = 'VeryLazy',
+    opts = {
+      notify_on_error = false,
+      format_on_save = false,
+      formatters_by_ft = {
+        javascript = { 'biome', 'biome-organize-imports' },
+        javascriptreact = { 'biome', 'biome-organize-imports' },
+        typescript = { 'biome', 'biome-organize-imports' },
+        typescriptreact = { 'biome', 'biome-organize-imports' },
+      },
+    },
+    config = function(_, opts)
+      local ok, conform = pcall(require, 'conform')
+      if not ok then
+        vim.notify('conform.nvim failed to load', vim.log.levels.ERROR)
+        return
       end
 
-      opts.formatters = opts.formatters or {}
-      opts.formatters.biome = {
-        require_cwd = true,
-      }
-    end,
-  },
-  {
-    'nvimtools/none-ls.nvim',
-    optional = true,
-    opts = function(_, opts)
-      local nls = require 'null-ls'
-      opts.sources = opts.sources or {}
-      table.insert(opts.sources, nls.builtins.formatting.biome)
+      conform.setup(opts)
+
+      vim.api.nvim_create_autocmd('BufWritePost', {
+        pattern = { '*.js', '*.jsx', '*.ts', '*.tsx' },
+        callback = function(args)
+          local bufnr = args.buf
+          if not vim.api.nvim_buf_is_valid(bufnr) then
+            return
+          end
+
+          local ft = vim.api.nvim_buf_get_option(bufnr, 'filetype')
+          if
+            not (
+              ft == 'javascript'
+              or ft == 'javascriptreact'
+              or ft == 'typescript'
+              or ft == 'typescriptreact'
+            )
+          then
+            return
+          end
+
+          if vim.fn.executable 'biome' == 0 then
+            vim.notify(
+              'biome not found in PATH — auto-format skipped',
+              vim.log.levels.WARN
+            )
+            return
+          end
+
+          conform.format {
+            bufnr = bufnr,
+            async = true,
+            lsp_format = 'never',
+            timeout_ms = 1000,
+          }
+
+          vim.defer_fn(function()
+            if
+              vim.api.nvim_buf_is_valid(bufnr)
+              and vim.api.nvim_buf_get_option(bufnr, 'modified')
+            then
+              vim.api.nvim_buf_call(bufnr, function()
+                vim.cmd 'silent noautocmd write'
+              end)
+            end
+          end, 300)
+        end,
+      })
     end,
   },
 }
