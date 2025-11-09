@@ -48,18 +48,23 @@ return {
         {
           '<leader>b',
           group = 'Buffers',
-          icon = { icon = '', color = 'yellow' },
+          icon = { icon = '', color = 'yellow' },
         },
         {
           '<leader>c',
           group = 'Code',
           mode = { 'n', 'x' },
-          icon = { icon = '', color = 'green' },
+          icon = { icon = '', color = 'green' },
         },
         {
           '<leader>d',
           group = 'Debug',
-          icon = { icon = '', color = 'red' },
+          icon = { icon = '', color = 'red' },
+        },
+        {
+          '<leader>e',
+          group = 'Explorer',
+          icon = { icon = '󰙅', color = 'blue' },
         },
         {
           '<leader>f',
@@ -98,26 +103,35 @@ return {
         { '<leader>4', hidden = true },
         { '<leader>5', hidden = true },
         {
+          '<space>m',
+          group = 'TreeSJ',
+          icon = { icon = '', color = 'green' },
+        },
+        {
+          '<space>j',
+          group = 'TreeSJ: Join',
+          mode = { 'n', 'x' },
+          icon = { icon = '󰏘', color = 'green' },
+          hidden = true,
+        },
+        {
           '<leader>o',
           group = 'Overseer',
-          icon = { icon = '', color = 'red' },
+          icon = { icon = '', color = 'red' },
         },
         {
           '<leader>s',
           group = 'Search',
-          icon = { icon = '', color = 'yellow' },
+          icon = { icon = '', color = 'yellow' },
         },
         {
           '<leader>t',
           group = 'Test',
           icon = { icon = '󰙨', color = 'purple' },
         },
-        {
-          'gz',
-          group = 'Surround',
-          mode = { 'n', 'v' },
-          icon = { icon = '', color = 'red' },
-        },
+        -- hide from "u to the end arrow"
+        { '<leader>u', hidden = true },
+        { '<leader>v', hidden = true },
       },
     },
   },
