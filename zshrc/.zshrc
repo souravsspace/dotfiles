@@ -229,6 +229,7 @@ if command -v tldr &> /dev/null; then
   alias help='tldr'
 fi
 
+
 # ============================================================================
 # FUNCTIONS
 # ============================================================================
@@ -247,6 +248,51 @@ function y() {
 ff() {
   command aerospace list-windows --all \
     | command fzf --bind 'enter:execute-silent(bash -c "aerospace focus --window-id {1}")+abort'
+}
+
+# --- Love2D ---
+love() {
+  # Helper function to check if it's a LÖVE2D project
+  is_love_project() {
+    # Check .luarc.json for "love2d"
+    if [ -f ".luarc.json" ]; then
+      if grep -q "love2d" ".luarc.json"; then
+        return 0
+      fi
+    # Only check main.lua if .luarc.json doesn't exist
+    elif [ -f "main.lua" ]; then
+      if grep -q "love" "main.lua"; then
+        return 0
+      fi
+    fi
+    return 1
+  }
+
+  if [ "$1" = "init" ]; then
+    if is_love_project; then
+      echo "Error: Already in a LÖVE2D project"
+      echo "Cannot initialize a new project in this directory"
+      return 1
+    fi
+    ~/dotfiles/scripts/love_boilerplate.sh
+  elif [ "$1" = "run" ]; then
+    if [ -n "$2" ]; then
+      /Applications/love.app/Contents/MacOS/love "$2"
+    else
+      if [ -f "main.lua" ] && [ -f ".luarc.json" ]; then
+        /Applications/love.app/Contents/MacOS/love .
+      elif [ -f "main.lua" ]; then
+        echo "Warning: main.lua found but .luarc.json missing"
+        /Applications/love.app/Contents/MacOS/love .
+      elif [ -f ".luarc.json" ]; then
+        echo "Error: .luarc.json found but main.lua missing"
+      else
+        echo "No love project found (main.lua and .luarc.json missing)"
+      fi
+    fi
+  else
+    /Applications/love.app/Contents/MacOS/love "$@"
+  fi
 }
 
 # ============================================================================

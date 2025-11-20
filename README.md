@@ -17,6 +17,6 @@ stow.
 ```
 
 ```bash
-chmod +x source.sh
-./source.sh
+chmod +x ./scripts/source.sh
+./scripts/source.sh
 ```
