@@ -1,80 +1,178 @@
+# ============================================================================
+# ENVIRONMENT SETUP
+# ============================================================================
+
 # --- Nix ---
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
 
 # --- Homebrew setup ---
-if [[ -f "/opt/homebrew/bin/brew" ]] then
+if [[ -f "/opt/homebrew/bin/brew" ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
+
+# ============================================================================
+# PLUGIN MANAGER (Zinit)
+# ============================================================================
 
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 if [ ! -d "$ZINIT_HOME" ]; then
-   mkdir -p "$(dirname $ZINIT_HOME)"
+   mkdir -p "$(dirname "$ZINIT_HOME")"
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# --- Starship prompt via Zinit ---
-eval "$(starship init zsh)" 
-export STARSHIP_CONFIG="${HOME}/dotfiles/starship/starship.toml"
-
-# --- nodejs setup ---
-export PATH="$HOME/.npm-global/bin:$PATH"
-
-# --- Other plugins using Zinit ---
+# --- Zinit plugins ---
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light ajeetdsouza/zoxide
 zinit light Aloxaf/fzf-tab
 
+# ============================================================================
+# SHELL OPTIONS & HISTORY
+# ============================================================================
+
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/dotfiles/zshrc/.zsh_history
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# ============================================================================
+# KEYBINDINGS (vi mode)
+# ============================================================================
+
+# Enable vi mode
+bindkey -v
+
+# Custom bindings for vi mode
+bindkey -M viins 'jj' vi-cmd-mode  # jj to enter command mode
+bindkey -M viins 'jk' vi-cmd-mode  # jk to enter command mode
+
+# History navigation (works in both insert and command mode)
+bindkey -M viins '^p' history-search-backward
+bindkey -M viins '^n' history-search-forward
+bindkey -M vicmd '^p' history-search-backward
+bindkey -M vicmd '^n' history-search-forward
+
+# ============================================================================
+# COMPLETIONS
+# ============================================================================
+
 # Load completions
 autoload -Uz compinit && compinit
 zinit cdreplay -q
 
-# Deleting zsl widget for starship error!
-zle -D zle-keymap-select
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:*' fzf-completion-opts '--ansi'
+zstyle ':fzf-tab:complete:*' fzf-preview 'eza --color=always --icons $realpath'
 
-# --- vi mode ---
-bindkey jj vi-cmd-mode
-bindkey jk vi-cmd-mode
+# Docker completions
+fpath+=($HOME/.docker/completions)
 
-# --- emacs mode ---
-bindkey -e
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
+# ============================================================================
+# PROMPT (Starship)
+# ============================================================================
 
-# Source your custom Git helper functions
-source ~/dotfiles/zshrc/.git.zshrc
+# Deleting zle widget for starship error fix (only if it exists)
+(( ${+widgets[zle-keymap-select]} )) && zle -D zle-keymap-select
+
+# Starship prompt
+eval "$(starship init zsh)" 
+export STARSHIP_CONFIG="${HOME}/dotfiles/starship/starship.toml"
+
+# ============================================================================
+# PATH MODIFICATIONS
+# ============================================================================
+
+# Node.js global packages
+export PATH="$HOME/.npm-global/bin:$PATH"
+
+# Ruby
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# PostgreSQL and MySQL (via Homebrew)
+BREW_PREFIX="$(brew --prefix)"
+export PATH="$BREW_PREFIX/libpq/bin:$PATH"
+export PATH="$BREW_PREFIX/mysql-client/bin:$PATH"
+unset BREW_PREFIX  # Clean up after use
+
+# ============================================================================
+# TOOL INITIALIZATIONS
+# ============================================================================
 
 # --- Node / NVM setup ---
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && echo "$HOME/.nvm" || echo "$XDG_CONFIG_HOME/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# --- Aliases & UI tools ---
+# --- rbenv & Ruby ---
+eval "$(rbenv init - zsh)"
+
+# --- Zoxide (directory jumper) ---
+eval "$(zoxide init --cmd cd zsh)"
+
+# --- fzf ---
+eval "$(fzf --zsh)"
+
+# --- FZF defaults ---
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
+
+# --- TMUX setup ---
+export TMUX_TMPDIR="$HOME/.tmux-log"
+[ ! -d "$TMUX_TMPDIR" ] && mkdir -p "$TMUX_TMPDIR"
+
+# --- Editor settings ---
+unset GIT_EDITOR
+export VISUAL="nvim"
+export EDITOR="nvim"
+
+# --- bat theme ---
+export BAT_THEME="Catppuccin Mocha"
+
+# --- Git pager ---
+export GIT_PAGER="bat --paging=always -l diff"
+export PAGER="bat --paging=always -l diff"
+
+# ============================================================================
+# ALIASES (grouped by category)
+# ============================================================================
+
+# --- General utilities ---
 alias cl='clear'
 alias la=tree
-export BAT_THEME="Catppuccin Mocha"
 alias cat=bat
 
-# eza shortcuts
+# --- eza shortcuts ---
 alias ll="eza -l --icons --git -a"
 alias lt="eza --tree --level=2 --long --icons --git"
 alias ltree="eza --tree --level=2 --icons --git"
 
-# Code editors
-alias vi='dotenvx run -f "$HOME/dotfiles/.env" --quiet -- nvim'
-alias vscode="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
-alias cursor="/Applications/Cursor.app/Contents/MacOS/Cursor"
+# --- Code editors ---
+alias v='nvim'
+alias vi='nvim'
+alias vscode="/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
 
-# Zoxide (directory jumper)
-eval "$(zoxide init --cmd cd zsh)"
-
-# --- Git aliases & pager ---
+# --- Git aliases ---
 alias gc="git commit -m"
 alias gca="git commit -a -m"
 alias gp="git push origin HEAD"
@@ -90,116 +188,70 @@ alias ga='git add -p'
 alias gcoall='git checkout -- .'
 alias gr='git remote'
 alias gre='git reset'
-export GIT_PAGER="bat --paging=always -l diff"
-export PAGER="bat --paging=always -l diff"
 
-# --- Docker shortcuts & completions ---
+# --- Docker shortcuts ---
 alias dco="docker compose"
 alias dps="docker ps"
 alias dpa="docker ps -a"
 alias dl="docker ps -l -q"
 alias dx="docker exec -it"
 
-fpath+=(/Users/sourav/.docker/completions)
+# --- Database clients ---
+alias pg="pgcli"
+alias sq="litecli"
+alias ms="mycli"
 
-# atac (Atac CLI)
-alias postman="atac -d ~/dotfiles/atac"
-
-# --- Directory aliases ---
+# --- Directory navigation ---
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
-# --- Zoxide alias ---
+# --- Zoxide aliases ---
 alias zz="z -"
 alias cd="z"
 
 # --- aerospace ---
 alias aerospace='command aerospace --config $HOME/.config/aerospace/aerospace.toml'
 
-# --- FZF defaults ---
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
-
-# --- History & completion ---
-HISTSIZE=10000
-SAVEHIST=10000
-HISTFILE=~/dotfiles/zshrc/.zsh_history
-setopt appendhistory
-setopt sharehistory
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
-
-# Completion styling
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:*' fzf-completion-opts '--ansi'
-zstyle ':fzf-tab:complete:*' fzf-preview 'eza --color=always --icons $realpath'
-
-
-# --- TMUX setup ---
-export TMUX_TMPDIR="$HOME/.tmux-log"
-mkdir -p "$TMUX_TMPDIR"
+# --- TMUX ---
 alias tmux="tmux -f $HOME/dotfiles/tmux/tmux.conf"
 
-# --- rbenv & Ruby ---
-eval "$(rbenv init - zsh)"
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+# --- atac (Atac CLI) ---
+alias postman="atac -d ~/dotfiles/atac"
 
-# --- pnpm & Rust ---
-export PNPM_HOME="$HOME/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-
-# --- SQLite wrapper ---
-_sqlite3() {
-  command sqlite3 --init "$HOME/.config/sqlite/.sqliterc" "$@"
-}
-alias sqlite3=_sqlite3
-
-# --- pg, mysql wrappers ---
-export PATH="$(brew --prefix libpq)/bin:$PATH"
-export PATH="$(brew --prefix mysql-client)/bin:$PATH"
-alias pg="pgcli"
-alias sq="litecli"
-alias ms="mycli"
-
-# --- Editor settings ---
-unset GIT_EDITOR
-export VISUAL="nvim"
-export EDITOR="nvim"
+# --- Darwin rebuild ---
+alias rebuild="sudo darwin-rebuild switch --flake ~/dotfiles/nix#savory"
 
 # --- tldr / help ---
 if command -v tldr &> /dev/null; then
   alias help='tldr'
 fi
 
-# --- Yazi function ---
+# ============================================================================
+# FUNCTIONS
+# ============================================================================
+
+# --- Yazi function (file manager with directory change) ---
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
   yazi "$@" --cwd-file="$tmp"
-  if cwd="$(< "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+  if cwd="$(<"$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
     cd "$cwd"
   fi
   rm -f "$tmp"
 }
 
-# --- fzf ---
-eval "$(fzf --zsh)"
-
-# --- Aerospace + fzf ---
+# --- Aerospace + fzf (window switcher) ---
 ff() {
   command aerospace list-windows --all \
     | command fzf --bind 'enter:execute-silent(bash -c "aerospace focus --window-id {1}")+abort'
 }
 
+# ============================================================================
+# LOCAL OVERRIDES
+# ============================================================================
 
-# --- Darwin rebuild ---
-alias rebuild="sudo darwin-rebuild switch --flake ~/dotfiles/nix#savory"
-
-. "$HOME/.local/bin/env"
+# Source local environment overrides
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"

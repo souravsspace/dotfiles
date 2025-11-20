@@ -72,6 +72,7 @@
         pgcli
         litecli
         mycli
+        lua
       ];
 
       homebrew = {
