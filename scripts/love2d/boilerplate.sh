@@ -13,7 +13,7 @@ mkdir -p "$project_name"
 cd "$project_name" || exit
 
 # Create directory structure
-mkdir -p assets/{sprites,sounds,fonts} entities scenes ui utils lib
+mkdir -p assets/{sprites,sounds,fonts} entities scenes ui utils lib maps/tilesets
 
 # Copy library files (excluding README files)
 rsync -a --exclude='*.md' ~/dotfiles/scripts/love2d/lib/ lib/
