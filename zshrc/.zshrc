@@ -274,7 +274,7 @@ love() {
       echo "Cannot initialize a new project in this directory"
       return 1
     fi
-    ~/dotfiles/scripts/love_boilerplate.sh
+    ~/dotfiles/scripts/love2d/boilerplate.sh
   elif [ "$1" = "run" ]; then
     if [ -n "$2" ]; then
       /Applications/love.app/Contents/MacOS/love "$2"
