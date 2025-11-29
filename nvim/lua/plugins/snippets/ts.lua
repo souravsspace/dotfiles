@@ -18,13 +18,13 @@ return {
         return filename:sub(1, 1):upper() .. filename:sub(2)
       end
 
-      -- TypeScript/React snippets
-      ls.add_snippets('typescript', {
+      -- Define React snippets once
+      local react_snippets = {
         -- sfc: default export
         s('sfc', {
           t 'const ',
           f(get_component_name, {}),
-          t { ' = () => {', '  return (', '    <div>' },
+          t { ' = (): React.JSX.Element => {', '  return (', '    <div>' },
           f(get_component_name, {}),
           t { '</div>', '  )', '}', '', 'export default ' },
           f(get_component_name, {}),
@@ -35,58 +35,17 @@ return {
         s('sfce', {
           t 'export const ',
           f(get_component_name, {}),
-          t { ' = () => {', '  return (', '    <div>' },
+          t { ' = (): React.JSX.Element => {', '  return (', '    <div>' },
           f(get_component_name, {}),
           t { '</div>', '  )', '}' },
           i(0),
         }),
-      })
+      }
 
-      ls.add_snippets('typescriptreact', {
-        -- sfc: default export
-        s('sfc', {
-          t 'const ',
-          f(get_component_name, {}),
-          t { ' = () => {', '  return (', '    <div>' },
-          f(get_component_name, {}),
-          t { '</div>', '  )', '}', '', 'export default ' },
-          f(get_component_name, {}),
-          i(0),
-        }),
-
-        -- sfce: named export
-        s('sfce', {
-          t 'export const ',
-          f(get_component_name, {}),
-          t { ' = () => {', '  return (', '    <div>' },
-          f(get_component_name, {}),
-          t { '</div>', '  )', '}' },
-          i(0),
-        }),
-      })
-
-      ls.add_snippets('javascriptreact', {
-        -- sfc: default export
-        s('sfc', {
-          t 'const ',
-          f(get_component_name, {}),
-          t { ' = () => {', '  return (', '    <div>' },
-          f(get_component_name, {}),
-          t { '</div>', '  )', '}', '', 'export default ' },
-          f(get_component_name, {}),
-          i(0),
-        }),
-
-        -- sfce: named export
-        s('sfce', {
-          t 'export const ',
-          f(get_component_name, {}),
-          t { ' = () => {', '  return (', '    <div>' },
-          f(get_component_name, {}),
-          t { '</div>', '  )', '}' },
-          i(0),
-        }),
-      })
+      -- Apply snippets to all React/TypeScript filetypes
+      ls.add_snippets('typescript', react_snippets)
+      ls.add_snippets('typescriptreact', react_snippets)
+      ls.add_snippets('javascriptreact', react_snippets)
 
       -- Keymaps for snippet navigation
       vim.keymap.set({ 'i', 's' }, '<C-k>', function()

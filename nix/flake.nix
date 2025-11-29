@@ -15,12 +15,9 @@
         allowUnfree = true;
       };
 
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs; [
         neovim
         tmux
-        mkalias
         bun
         docker
         fzf
@@ -47,20 +44,12 @@
         ripgrep
         cocoapods
         go
-        xh
-        atac
-        age
         tldr 
         yazi
-        jellyfin-ffmpeg
         jq
-        fd
         resvg
-        imagemagick
-        poppler
         markdownlint-cli
         zinit
-        portal
         gh
         redis
         uv
@@ -73,6 +62,9 @@
         litecli
         mycli
         lua
+        jujutsu
+        devbox
+        python314
       ];
 
       homebrew = {
@@ -87,7 +79,6 @@
           "wrangler"
           "cloudflared"
           "sevenzip"
-          "specify"
           "mysql-client"
           "libpq"
           "postgresql"
@@ -118,7 +109,6 @@
           "figma"
           "windsurf"
           "claude"
-          "chatgpt"
           "whatsapp"
           "messenger"
           "motrix"
