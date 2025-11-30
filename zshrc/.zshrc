@@ -111,6 +111,9 @@ export PATH="$PNPM_HOME:$PATH"
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# Go
+export PATH="$HOME/go/bin:$PATH"
+
 # PostgreSQL and MySQL (via Homebrew)
 BREW_PREFIX="$(brew --prefix)"
 export PATH="$BREW_PREFIX/libpq/bin:$PATH"
