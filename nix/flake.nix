@@ -72,7 +72,6 @@
         taps = [
           "nikitabobko/tap"
           "FelixKratz/formulae"
-          "sst/tap"
         ];
 
         brews = [
@@ -82,7 +81,7 @@
           "mysql-client"
           "libpq"
           "postgresql"
-          "sst"
+          "awscli"
         ];
 
         casks = [
