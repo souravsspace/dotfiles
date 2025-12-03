@@ -82,6 +82,7 @@
           "mysql-client"
           "libpq"
           "postgresql"
+          "sst"
         ];
 
         casks = [
@@ -112,6 +113,7 @@
           "whatsapp"
           "messenger"
           "motrix"
+          "kindavim"
         ];
 
         onActivation.cleanup = "zap";
