@@ -65,6 +65,7 @@
         jujutsu
         devbox
         python314
+        nix
       ];
 
       homebrew = {
