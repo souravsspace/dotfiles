@@ -114,6 +114,7 @@
           "messenger"
           "motrix"
           "kindavim"
+          "shortcat"
         ];
 
         onActivation.cleanup = "zap";

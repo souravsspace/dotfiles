@@ -1,6 +1,14 @@
 ---
 description: Stage, commit, push current branch, merge to main, push main, and return to original branch.
 agent: build
+permission:
+  bash:
+    git add: ask
+    git commit: ask
+    git push: ask
+    git checkout: ask
+    git pull: ask
+    git merge: ask
 ---
 
 # Please perform the following steps to save, push, and merge to main

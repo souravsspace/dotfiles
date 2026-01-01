@@ -1,6 +1,11 @@
 ---
 description: Stage all changes, commit with a descriptive message based on the diff, and push to the current branch.
 agent: build
+permission:
+  bash:
+    git add: ask
+    git commit: ask
+    git push: ask
 ---
 
 # Please perform the following steps to save and push my work
