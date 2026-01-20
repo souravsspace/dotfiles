@@ -17,6 +17,10 @@ stow .
 ```
 
 ```bash
+source ~/dotfiles/zshrc/.zshrc
+```
+
+```bash
 chmod +x ./scripts/source.sh
 ./scripts/source.sh
 ```

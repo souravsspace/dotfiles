@@ -1,3 +1,7 @@
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Added by `rbenv init` on Fri Mar 21 23:07:25 +06 2025

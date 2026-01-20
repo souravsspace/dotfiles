@@ -21,18 +21,7 @@ else
   echo "ZDOTDIR export already present in $ZSHENV"
 fi
 
-# 2) Write Ghostty config-file setting
-GHOSTTY_DIR="$HOME/.config/ghostty"
-GHOSTTY_CFG="$GHOSTTY_DIR/config"
-mkdir -p "$GHOSTTY_DIR"
-if ! grep -Fxq 'config-file = "~/.config/ghostty/config"' "$GHOSTTY_CFG" 2>/dev/null; then
-  echo "Writing Ghostty config-file setting to $GHOSTTY_CFG"
-  echo 'config-file = "~/.config/ghostty/config"' > "$GHOSTTY_CFG"
-else
-  echo "Ghostty config-file setting already in place"
-fi
-
-# 3) Source tmux config (after TPM install)
+# 2) Source tmux config (after TPM install)
 TMUX_CFG="$HOME/.config/tmux/tmux.conf"
 if [ -f "$TMUX_CFG" ]; then
   echo "Reloading tmux config: $TMUX_CFG"
@@ -44,7 +33,7 @@ else
   echo "Warning: tmux config not found at $TMUX_CFG"
 fi
 
-# 4) Reload AeroSpace
+# 3) Reload AeroSpace
 if command -v aerospace >/dev/null 2>&1; then
   echo "Reloading AeroSpace configuration"
   aerospace reload-config
@@ -52,16 +41,7 @@ else
   echo "Warning: 'aerospace' command not found in PATH"
 fi
 
-# 5) Reload SketchyBar
-SKETCHYBAR_RC="$HOME/.config/sketchybar/sketchybarrc"
-if command -v sketchybar >/dev/null 2>&1 && [ -f "$SKETCHYBAR_RC" ]; then
-  echo "Reloading SketchyBar RC: $SKETCHYBAR_RC"
-  sketchybar --reload "$SKETCHYBAR_RC"
-else
-  echo "Warning: sketchybar command or RC file not found"
-fi
-
-# 6) Reload Ghostty (if it supports a reload command)
+# 4) Reload Ghostty (if it supports a reload command)
 if command -v ghostty >/dev/null 2>&1; then
   echo "Reloading Ghostty configuration"
   ghostty reload-config || echo "ghostty reload-config failed (check Ghostty version)"
@@ -71,7 +51,7 @@ fi
 
 echo "All done!"
 
-# 7) Rebuild bat cache and reload Zsh configuration
+# 5) Rebuild bat cache and reload Zsh configuration
 if command -v bat >/dev/null 2>&1; then
   echo "Rebuilding bat cache"
   bat cache --build
