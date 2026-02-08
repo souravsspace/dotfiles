@@ -99,6 +99,9 @@ vim.keymap.set('v', '<Right>', '<Nop>', opts)
 -- Enable this option to avoid conflicts with Prettier.
 vim.g.lazyvim_prettier_needs_config = true
 
+-- Set to false to disable ESLint auto format
+vim.g.lazyvim_eslint_auto_format = true
+
 -- Normal mode shortcuts for line navigation
 vim.keymap.set('n', 'E', '$', opts) -- Move to end of line
 vim.keymap.set('n', 'B', '_', opts) -- Move to beginning of line

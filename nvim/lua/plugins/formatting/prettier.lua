@@ -11,6 +11,7 @@ local supported = {
   'markdown',
   'markdown.mdx',
   'scss',
+  'svelte',
   'typescript',
   'typescriptreact',
   'vue',
@@ -28,7 +29,7 @@ local excluded_filetypes = {
 return {
   {
     'williamboman/mason.nvim',
-    opts = { ensure_installed = { 'prettier' } },
+    opts = { ensure_installed = { 'prettier', 'prettier-plugin-svelte' } },
   },
 
   -- conform

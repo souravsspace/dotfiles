@@ -112,6 +112,23 @@ return {
             },
           },
         },
+        svelte = {
+          keys = {
+            {
+              "<leader>co",
+              function()
+                vim.lsp.buf.code_action({
+                  apply = true,
+                  context = {
+                    only = { "source.organizeImports" },
+                    diagnostics = {},
+                  },
+                })
+              end,
+              desc = "Organize Imports",
+            },
+          },
+        },
         -- emmet_ls = {
         --   filetypes = {
         --     'html',
@@ -133,6 +150,15 @@ return {
           return true
         end,
         vtsls = function(_, opts)
+          -- Add Svelte TypeScript plugin support
+          LazyVim.extend(opts.settings.vtsls, "tsserver.globalPlugins", {
+            {
+              name = "typescript-svelte-plugin",
+              location = LazyVim.get_pkg_path("svelte-language-server", "/node_modules/typescript-svelte-plugin"),
+              enableForWorkspaceTypeScriptVersions = true,
+            },
+          })
+          
           vim.filetype.add {
             extension = {
               tsx = 'typescriptreact',

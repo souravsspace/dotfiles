@@ -14,6 +14,14 @@ return {
         javascriptreact = { 'biome', 'biome-organize-imports' },
         typescript = { 'biome', 'biome-organize-imports' },
         typescriptreact = { 'biome', 'biome-organize-imports' },
+        svelte = { 'biome' },
+      },
+      formatters = {
+        biome = {
+          command = "biome",
+          args = { "format", "--stdin-file-path", "$FILENAME" },
+          cwd = require("conform.util").root_file({ "biome.json", "biome.jsonc" }),
+        },
       },
     },
     config = function(_, opts)
@@ -26,7 +34,7 @@ return {
       conform.setup(opts)
 
       vim.api.nvim_create_autocmd('BufWritePost', {
-        pattern = { '*.js', '*.jsx', '*.ts', '*.tsx' },
+        pattern = { '*.js', '*.jsx', '*.ts', '*.tsx', '*.svelte' },
         callback = function(args)
           local bufnr = args.buf
           if not vim.api.nvim_buf_is_valid(bufnr) then
@@ -40,6 +48,7 @@ return {
               or ft == 'javascriptreact'
               or ft == 'typescript'
               or ft == 'typescriptreact'
+              or ft == 'svelte'
             )
           then
             return

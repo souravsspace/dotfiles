@@ -40,6 +40,7 @@ return {
         'gomod',
         'gowork',
         'gosum',
+        'svelte',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,

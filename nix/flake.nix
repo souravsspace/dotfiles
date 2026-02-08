@@ -115,6 +115,7 @@
           "motrix"
           "kindavim"
           "shortcat"
+          "claude-code"
         ];
 
         onActivation.cleanup = "zap";
