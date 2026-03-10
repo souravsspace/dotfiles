@@ -1,33 +1,27 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "default_agent": "plan",
-  "theme": "opencode",
   "autoupdate": true,
-  "permission": {
-    "edit": "ask",
-    "bash": "ask",
-    "skill": "ask",
-    "webfetch": "ask",
-    "doom_loop": "ask",
-    "external_directory": "deny"
-  },
+  "default_agent": "plan",
   "mcp": {
-    "context7": {
-      "type": "local",
-      "command": ["npx", "-y", "@upstash/context7-mcp"]
-    },
     "chrome-devtools": {
       "type": "local",
       "command": ["npx", "-y", "chrome-devtools-mcp@latest"]
     },
-    "polar-sandbox": {
+    "context7": {
       "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "mcp-remote",
-        "https://mcp.polar.sh/mcp/polar-sandbox"
-      ]
+      "command": ["npx", "-y", "@upstash/context7-mcp"]
+    },
+    "engram": {
+      "command": ["engram", "mcp", "--tools=agent"],
+      "enabled": true,
+      "type": "local"
     }
+  },
+  "permission": {
+    "edit": "ask",
+    "webfetch": "ask",
+    "doom_loop": "ask",
+    "external_directory": "deny",
+    "bash": "ask"
   }
 }

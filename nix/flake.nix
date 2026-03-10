@@ -42,7 +42,6 @@
         wget
         rbenv
         ripgrep
-        cocoapods
         go
         tldr 
         yazi
@@ -57,7 +56,6 @@
         ollama
         claude-code
         yarn
-        turbo
         pgcli
         litecli
         mycli
@@ -76,7 +74,6 @@
         ];
 
         brews = [
-          "wrangler"
           "cloudflared"
           "sevenzip"
           "mysql-client"
@@ -105,14 +102,11 @@
           "zen"
           "surfshark"
           "zed"
-          "redis-insight"
           "webstorm"
           "figma"
-          "windsurf"
           "claude"
           "whatsapp"
           "messenger"
-          "motrix"
           "kindavim"
           "shortcat"
           "claude-code"
