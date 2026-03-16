@@ -27,6 +27,7 @@ require('lazy').setup({
     { import = 'plugins.editor.leap' },
     { import = 'plugins.editor.lualine' },
     { import = 'plugins.editor.mini' },
+    { import = 'plugins.editor.octo' },
     { import = 'plugins.editor.file-tree' },
     { import = 'plugins.editor.overseer' },
     { import = 'plugins.editor.snacks' },
