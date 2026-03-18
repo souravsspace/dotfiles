@@ -57,3 +57,22 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- Better indenting
 keymap.set('v', '<', '<gv')
 keymap.set('v', '>', '>gv')
+
+-- Show diagnostic error message
+keymap.set('n', 'gl', vim.diagnostic.open_float, { desc = 'Show diagnostic' })
+
+-- Copy diagnostic message to clipboard
+keymap.set('n', 'gc', function()
+  local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line('.') - 1 })
+  if #diagnostics > 0 then
+    local messages = {}
+    for _, diagnostic in ipairs(diagnostics) do
+      table.insert(messages, diagnostic.message)
+    end
+    local text = table.concat(messages, '\n')
+    vim.fn.setreg('+', text)
+    vim.notify('Diagnostic copied to clipboard', vim.log.levels.INFO)
+  else
+    vim.notify('No diagnostic on current line', vim.log.levels.WARN)
+  end
+end, { desc = 'Copy diagnostic' })
