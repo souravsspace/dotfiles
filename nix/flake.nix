@@ -38,7 +38,6 @@
         eza
         zoxide
         sqlite
-        dotenvx
         wget
         rbenv
         ripgrep
@@ -58,7 +57,6 @@
         yarn
         pgcli
         litecli
-        mycli
         lua
         jujutsu
         devbox
@@ -126,7 +124,7 @@
         env = pkgs.buildEnv {
           name = "system-applications";
           paths = config.environment.systemPackages;
-          pathsToLink = "/Applications";
+          pathsToLink = [ "/Applications" ];
         };
       in
         pkgs.lib.mkForce ''

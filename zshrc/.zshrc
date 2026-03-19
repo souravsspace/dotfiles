@@ -304,3 +304,6 @@ love() {
 
 # Source local environment overrides
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
+
+# bun completions
+[ -s "/Users/sourav/.bun/_bun" ] && source "/Users/sourav/.bun/_bun"
