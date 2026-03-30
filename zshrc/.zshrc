@@ -166,7 +166,8 @@ alias la=tree
 alias cat=bat
 
 # --- eza shortcuts ---
-alias ll="eza -l --icons --git -a"
+alias l='eza -l --icons --group-directories-first --git --time-style=relative -a'
+alias ll='eza -l --icons --group-directories-first --git --time-style=relative -a'
 alias lt="eza --tree --level=2 --long --icons --git"
 alias ltree="eza --tree --level=2 --icons --git"
 

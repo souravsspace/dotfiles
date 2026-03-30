@@ -4,12 +4,12 @@
   "default_agent": "plan",
   "mcp": {
     "chrome-devtools": {
-      "type": "local",
-      "command": ["npx", "-y", "chrome-devtools-mcp@latest"]
+      "command": ["npx", "-y", "chrome-devtools-mcp@latest"],
+      "type": "local"
     },
     "context7": {
-      "type": "local",
-      "command": ["npx", "-y", "@upstash/context7-mcp"]
+      "command": ["npx", "-y", "@upstash/context7-mcp"],
+      "type": "local"
     },
     "engram": {
       "command": ["engram", "mcp", "--tools=agent"],
@@ -18,10 +18,38 @@
     }
   },
   "permission": {
-    "edit": "ask",
-    "webfetch": "ask",
+    "bash": "ask",
     "doom_loop": "ask",
+    "edit": "ask",
     "external_directory": "deny",
-    "bash": "ask"
+    "webfetch": "ask"
+  },
+  "provider": {
+    "ollama": {
+      "models": {
+        "glm-5:cloud": {
+          "_launch": true,
+          "limit": {
+            "context": 202752,
+            "output": 131072
+          },
+          "name": "glm-5:cloud"
+        },
+        "kimi-k2.5:cloud": {
+          "_launch": true,
+          "limit": {
+            "context": 262144,
+            "output": 262144
+          },
+          "name": "kimi-k2.5:cloud"
+        }
+      },
+      "name": "Ollama",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://127.0.0.1:11434/v1"
+      }
+    }
   }
 }
+
