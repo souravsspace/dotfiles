@@ -41,6 +41,7 @@ require('lazy').setup({
     { import = 'plugins.formatting.conform' },
     { import = 'plugins.formatting.prettier' },
     { import = 'plugins.formatting.biome' },
+    { import = 'plugins.languages.astro' },
     { import = 'plugins.languages.git' },
     { import = 'plugins.languages.json' },
     { import = 'plugins.languages.markdown' },
