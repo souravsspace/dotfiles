@@ -33,29 +33,25 @@
     "webfetch": "ask"
   },
   "provider": {
-    "ollama": {
+    "openrouter": {
       "models": {
-        "glm-5:cloud": {
-          "_launch": true,
-          "limit": {
-            "context": 202752,
-            "output": 131072
-          },
-          "name": "glm-5:cloud"
-        },
-        "kimi-k2.5:cloud": {
-          "_launch": true,
-          "limit": {
-            "context": 262144,
-            "output": 262144
-          },
-          "name": "kimi-k2.5:cloud"
+        "DS::v3.2": {
+          "id": "deepseek/deepseek-v3.2",
+          "options": {
+            "include_reasoning": true,
+            "provider": {
+              "order": [
+                "deepinfra",
+                "atlascloud",
+                "novita",
+                "siliconflow",
+                "chutes",
+                "parasail"
+              ],
+              "allow_fallbacks": false
+            }
+          }
         }
-      },
-      "name": "Ollama",
-      "npm": "@ai-sdk/openai-compatible",
-      "options": {
-        "baseURL": "http://127.0.0.1:11434/v1"
       }
     }
   }

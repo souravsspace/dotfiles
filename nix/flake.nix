@@ -53,7 +53,6 @@
         uv
         biome
         ollama
-        claude-code
         yarn
         pgcli
         litecli
@@ -108,7 +107,7 @@
           "messenger"
           "kindavim"
           "shortcat"
-          "claude-code"
+          "claude-code@latest"
         ];
 
         onActivation.cleanup = "zap";
