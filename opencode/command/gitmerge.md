@@ -1,12 +1,12 @@
 ---
 description: Stage, commit, push current branch, merge to main, push main, and return to original branch.
-agent: build
+agent: general
 permission:
   bash:
-    git add: ask
+    git add: allow
     git commit: ask
-    git push: ask
-    git checkout: ask
+    git push: allow
+    git checkout: allow
     git pull: ask
     git merge: ask
 ---

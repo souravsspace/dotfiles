@@ -1,11 +1,11 @@
 ---
 description: Stage all changes, commit with a descriptive message based on the diff, and push to the current branch.
-agent: build
+agent: general
 permission:
   bash:
-    git add: ask
+    git add: allow
     git commit: ask
-    git push: ask
+    git push: allow
 ---
 
 # Please perform the following steps to save and push my work

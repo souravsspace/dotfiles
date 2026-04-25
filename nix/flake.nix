@@ -62,6 +62,7 @@
         python314
         nix
         gh-dash
+        cocoapods
       ];
 
       homebrew = {

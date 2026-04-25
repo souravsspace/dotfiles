@@ -165,6 +165,9 @@ alias cl='clear'
 alias la=tree
 alias cat=bat
 
+# --- Opencode ---
+alias oc='opencode'
+
 # --- eza shortcuts ---
 alias l='eza -l --icons --group-directories-first --git --time-style=relative -a'
 alias ll='eza -l --icons --group-directories-first --git --time-style=relative -a'

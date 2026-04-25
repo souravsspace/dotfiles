@@ -2,7 +2,48 @@
   "$schema": "https://opencode.ai/config.json",
   "autoupdate": true,
   "plugin": ["superpowers@git+https://github.com/obra/superpowers.git"],
-  "default_agent": "plan",
+  "default_agent": "architect",
+  "agent": {
+    "general": {
+      "color": "#f1faee"
+    },
+    "architect": {
+      "color": "#71b084"
+    },
+    "frontend-architect": {
+      "color": "#fbc4ab"
+    },
+    "api-design-architect": {
+      "color": "#e9edc9"
+    },
+    "typescript-quality-guardian": {
+      "color": "#3178C6"
+    },
+    "backend-reliability-engineer": {
+      "color": "#71a5de"
+    },
+    "database-performance-optimizer": {
+      "color": "#dedbd2"
+    },
+    "devops-engineer": {
+      "color": "#bbd0ff"
+    },
+    "security-architect": {
+      "color": "#E06C75"
+    },
+    "risk-advisor": {
+      "color": "#ffb5a7"
+    },
+    "session-closer": {
+      "color": "#606c38"
+    },
+    "plan": {
+      "disable": true
+    },
+    "build": {
+      "disable": true
+    }
+  },
   "mcp": {
     "chrome-devtools": {
       "command": ["npx", "-y", "chrome-devtools-mcp@latest"],
@@ -26,11 +67,22 @@
     }
   },
   "permission": {
-    "bash": "ask",
-    "doom_loop": "ask",
-    "edit": "ask",
+    "bash": "allow",
+    "edit": "allow",
     "external_directory": "deny",
-    "webfetch": "ask"
+    "webfetch": "allow",
+    "read": "allow",
+    "codesearch": "allow",
+    "glob": "allow",
+    "grep": "allow",
+    "skill": "allow",
+    "websearch": "allow",
+    "list": "allow",
+    "lsp": "allow",
+    "task": "allow",
+    "question": "allow",
+    "todowrite": "allow",
+    "doom_loop": "allow"
   },
   "provider": {
     "openrouter": {
