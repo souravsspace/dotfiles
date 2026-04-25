@@ -1,0 +1,112 @@
+{
+  "$schema": "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux-settings.schema.json",
+  "schemaVersion": 1,
+
+  "app": {
+    "appearance": "dark",
+    "sendAnonymousTelemetry": false,
+    "focusPaneOnFirstClick": true,
+    "keepWorkspaceOpenWhenClosingLastSurface": false,
+    "reorderOnNotification": false,
+    "warnBeforeQuit": true,
+    "newWorkspacePlacement": "afterCurrent",
+    "renameSelectsExistingName": true
+  },
+
+  "terminal": {
+    "showScrollBar": false
+  },
+
+  "sidebar": {
+    "hideAllDetails": false,
+    "branchLayout": "vertical",
+    "showNotificationMessage": true,
+    "showBranchDirectory": true,
+    "showPullRequests": true,
+    "openPullRequestLinksInCmuxBrowser": true,
+    "openPortLinksInCmuxBrowser": true,
+    "showSSH": true,
+    "showPorts": true,
+    "showLog": true,
+    "showProgress": true,
+    "showCustomMetadata": true
+  },
+  "sidebarAppearance": {
+    "matchTerminalBackground": true,
+    "tintColor": "#1E1E2E",
+    "tintOpacity": 0.88
+  },
+  "workspaceColors": {
+    "indicatorStyle": "leftRail",
+    "selectionColor": "#4a4e3e",
+    "notificationBadgeColor": "#4a4e3e",
+    "colors": {
+      "Red": "#F38BA8",
+      "Crimson": "#EBA0AC",
+      "Orange": "#FAB387",
+      "Amber": "#F9E2AF",
+      "Olive": "#A6E3A1",
+      "Green": "#A6E3A1",
+      "Teal": "#94E2D5",
+      "Aqua": "#89DCEB",
+      "Blue": "#89B4FA",
+      "Navy": "#74C7EC",
+      "Indigo": "#B4BEFE",
+      "Purple": "#CBA6F7",
+      "Magenta": "#F5C2E7",
+      "Rose": "#F2CDCD",
+      "Brown": "#FAB387",
+      "Charcoal": "#585B70"
+    }
+  },
+
+  "automation": {
+    "claudeCodeIntegration": true,
+    "socketControlMode": "cmuxOnly",
+    "portBase": 9100,
+    "portRange": 10
+  },
+
+  "browser": {
+    "defaultSearchEngine": "google",
+    "showSearchSuggestions": true,
+    "theme": "dark",
+    "openTerminalLinksInCmuxBrowser": true,
+    "interceptTerminalOpenCommandInCmuxBrowser": true,
+    "insecureHttpHostsAllowedInEmbeddedBrowser": [
+      "localhost",
+      "127.0.0.1",
+      "::1",
+      "0.0.0.0",
+      "*.localtest.me"
+    ]
+  },
+  "shortcuts": {
+    "showModifierHoldHints": true,
+    "bindings": {
+      "reloadConfiguration": ["ctrl+s", "shift+r"],
+      "commandPalette": "cmd+shift+p",
+      "openSettings": "cmd+,",
+      "newSurface": ["ctrl+s", "c"],
+      "closeTab": ["ctrl+s", "q"],
+      "renameTab": ["ctrl+s", "r"],
+      "nextSurface": ["ctrl+s", "n"],
+      "prevSurface": ["ctrl+s", "p"],
+      "goToWorkspace": ["ctrl+s", "o"],
+      "nextSidebarTab": ["ctrl+s", "tab"],
+      "prevSidebarTab": ["ctrl+s", "shift+tab"],
+      "renameWorkspace": ["ctrl+s", "w"],
+      "newTab": "cmd+n",
+      "splitRight": ["ctrl+s", "v"],
+      "splitDown": ["ctrl+s", "s"],
+      "toggleSplitZoom": ["ctrl+s", "z"],
+      "focusLeft": ["ctrl+s", "h"],
+      "focusDown": ["ctrl+s", "j"],
+      "focusUp": ["ctrl+s", "k"],
+      "focusRight": ["ctrl+s", "l"],
+      "toggleTerminalCopyMode": ["ctrl+s", "]"],
+      "showNotifications": "cmd+i",
+      "jumpToUnread": "cmd+shift+u"
+    }
+  }
+}

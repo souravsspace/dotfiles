@@ -1,0 +1,57 @@
+{
+  "actions": {
+    "clearTerminal": {
+      "type": "command",
+      "title": "Clear Terminal",
+      "subtitle": "Send clear to current pane",
+      "command": "clear",
+      "shortcut": ["ctrl+s", "shift+k"],
+      "palette": true,
+      "icon": { "type": "symbol", "name": "trash" }
+    }
+  },
+
+  "commands": [
+    {
+      "name": "Dotfiles",
+      "description": "nvim + shell in dotfiles",
+      "keywords": ["dots", "config", "settings", "nix"],
+      "restart": "confirm",
+      "workspace": {
+        "name": "dotfiles",
+        "cwd": "~/dotfiles",
+        "color": "#CBA6F7",
+        "layout": {
+          "direction": "horizontal",
+          "split": 0.65,
+          "children": [
+            {
+              "pane": {
+                "surfaces": [
+                  {
+                    "type": "terminal",
+                    "name": "editor",
+                    "command": "nvim .",
+                    "cwd": "~/dotfiles",
+                    "focus": true
+                  }
+                ]
+              }
+            },
+            {
+              "pane": {
+                "surfaces": [
+                  {
+                    "type": "terminal",
+                    "name": "shell",
+                    "cwd": "~/dotfiles"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
