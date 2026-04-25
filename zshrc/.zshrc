@@ -98,6 +98,9 @@ export STARSHIP_CONFIG="${HOME}/dotfiles/starship/starship.toml"
 # PATH MODIFICATIONS
 # ============================================================================
 
+# opencode
+export PATH=/Users/sourav/.opencode/bin:$PATH
+
 # Node.js global packages
 export PATH="$HOME/.npm-global/bin:$PATH"
 

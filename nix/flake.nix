@@ -70,6 +70,7 @@
         taps = [
           "nikitabobko/tap"
           "FelixKratz/formulae"
+          "manaflow-ai/cmux"
         ];
 
         brews = [
@@ -109,6 +110,7 @@
           "kindavim"
           "shortcat"
           "claude-code@latest"
+          "cmux"
         ];
 
         onActivation.cleanup = "zap";

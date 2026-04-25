@@ -199,6 +199,7 @@ alt-s = "exec-and-forget /usr/bin/open -a /Applications/Surfshark.app"
 alt-t = "exec-and-forget /usr/bin/open -a /Applications/Telegram\\ Desktop.app"
 alt-v = "exec-and-forget /usr/bin/open -a /Applications/Visual\\ Studio\\ Code.app"
 alt-w = "exec-and-forget /usr/bin/open -a /Applications/WhatsApp.app"
+alt-x = "exec-and-forget /usr/bin/open -a /Applications/cmux.app"
 alt-z = "exec-and-forget /usr/bin/open -a /Applications/Zed.app"
 
 # 'service' binding mode declaration.
