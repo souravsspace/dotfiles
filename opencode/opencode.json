@@ -13,32 +13,38 @@
     "architect": {
       "color": "#71b084"
     },
-    "frontend-architect": {
-      "color": "#fbc4ab"
-    },
-    "api-design-architect": {
+    "api-designer": {
       "color": "#e9edc9"
     },
-    "typescript-quality-guardian": {
-      "color": "#3178C6"
-    },
-    "backend-reliability-engineer": {
+    "backend-developer": {
       "color": "#71a5de"
     },
-    "database-performance-optimizer": {
-      "color": "#dedbd2"
+    "code-reviewer": {
+      "color": "#adb5bd"
+    },
+    "debugger": {
+      "color": "#f4a261"
     },
     "devops-engineer": {
       "color": "#bbd0ff"
     },
-    "security-architect": {
-      "color": "#E06C75"
+    "frontend-developer": {
+      "color": "#fbc4ab"
     },
-    "risk-advisor": {
-      "color": "#ffb5a7"
-    },
-    "session-closer": {
+    "planner": {
       "color": "#606c38"
+    },
+    "qa-expert": {
+      "color": "#cdb4db"
+    },
+    "rust-engineer": {
+      "color": "#f77f00"
+    },
+    "typescript-pro": {
+      "color": "#3178C6"
+    },
+    "ui-designer": {
+      "color": "#ffafcc"
     },
     "plan": {
       "disable": true
@@ -86,28 +92,5 @@
     "question": "allow",
     "todowrite": "allow",
     "doom_loop": "allow"
-  },
-  "provider": {
-    "openrouter": {
-      "models": {
-        "DS::v3.2": {
-          "id": "deepseek/deepseek-v3.2",
-          "options": {
-            "include_reasoning": true,
-            "provider": {
-              "order": [
-                "deepinfra",
-                "atlascloud",
-                "novita",
-                "siliconflow",
-                "chutes",
-                "parasail"
-              ],
-              "allow_fallbacks": false
-            }
-          }
-        }
-      }
-    }
   }
 }
