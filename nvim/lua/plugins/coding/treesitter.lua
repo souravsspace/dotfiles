@@ -41,6 +41,8 @@ return {
         'gowork',
         'gosum',
         'svelte',
+        'astro',
+        'css',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,

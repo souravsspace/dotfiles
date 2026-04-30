@@ -90,7 +90,6 @@
           "font-hack-nerd-font"
           "sf-symbols"
           "font-sf-pro"
-          "ngrok"
           "ghostty"
           "visual-studio-code"
           "google-chrome"

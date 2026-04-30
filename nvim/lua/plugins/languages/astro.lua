@@ -1,10 +1,5 @@
 return {
   {
-    'nvim-treesitter/nvim-treesitter',
-    opts = { ensure_installed = { 'astro', 'css' } },
-  },
-
-  {
     'neovim/nvim-lspconfig',
     opts = function(_, opts)
       opts.servers = opts.servers or {}
@@ -28,7 +23,6 @@ return {
       }
     end,
   },
-
   {
     'conform.nvim',
     opts = function(_, opts)

@@ -29,7 +29,11 @@ return {
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
     },
-    config = function()
+    config = function(_, opts)
+      -- Merge opts from other plugin files (e.g. rust.lua, typescript.lua)
+      local external_servers = opts and opts.servers or {}
+      local external_setup = opts and opts.setup or {}
+
       -- Configure LSP floating windows to work better with completion
       local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
       function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
@@ -264,7 +268,7 @@ return {
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-      local servers = {
+      local servers = vim.tbl_deep_extend('force', {
         lua_ls = {
           -- capabilities = {},
           settings = {
@@ -388,7 +392,7 @@ return {
           },
         },
 
-      }
+      }, external_servers)
 
       -- Ensure the servers and tools above are installed
       --
@@ -403,7 +407,13 @@ return {
       --
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
-      local ensure_installed = vim.tbl_keys(servers or {})
+      local ensure_installed = {}
+      for name, server in pairs(servers or {}) do
+        -- Skip explicitly disabled servers and deprecated names
+        if server.enabled ~= false and name ~= 'tsserver' then
+          table.insert(ensure_installed, name)
+        end
+      end
       vim.list_extend(ensure_installed, {
         'css-lsp',
         'debugpy',
@@ -433,56 +443,68 @@ return {
         ensure_installed = ensure_installed,
       }
 
-      require('mason-lspconfig').setup {
-        setup = {
-          yamlls = function()
-            -- Neovim < 0.10 does not have dynamic registration for formatting
-            if vim.fn.has 'nvim-0.10' == 0 then
-              LazyVim.lsp.on_attach(function(client, _)
-                client.server_capabilities.documentFormattingProvider = true
-              end, 'yamlls')
-            end
-          end,
-
-          gopls = function(_, opts)
-            -- workaround for gopls not supporting semanticTokensProvider
-            -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
+      -- Build handlers: base handlers <- external setup overrides <- default fallback handler
+      local handlers = vim.tbl_extend('force', {
+        yamlls = function()
+          -- Neovim < 0.10 does not have dynamic registration for formatting
+          if vim.fn.has 'nvim-0.10' == 0 then
             LazyVim.lsp.on_attach(function(client, _)
-              if not client.server_capabilities.semanticTokensProvider then
-                local semantic =
-                  client.config.capabilities.textDocument.semanticTokens
-                client.server_capabilities.semanticTokensProvider = {
-                  full = true,
-                  legend = {
-                    tokenTypes = semantic.tokenTypes,
-                    tokenModifiers = semantic.tokenModifiers,
-                  },
-                  range = true,
-                }
-              end
-            end, 'gopls')
-            -- end workaround
-          end,
-        },
-        handlers = {
-          function(server_name)
-            -- Skip rust_analyzer setup as it's handled by rustaceanvim
-            if server_name == 'rust_analyzer' then
-              return
+              client.server_capabilities.documentFormattingProvider = true
+            end, 'yamlls')
+          end
+        end,
+
+        gopls = function(_, server_opts)
+          -- workaround for gopls not supporting semanticTokensProvider
+          -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
+          LazyVim.lsp.on_attach(function(client, _)
+            if not client.server_capabilities.semanticTokensProvider then
+              local semantic =
+                client.config.capabilities.textDocument.semanticTokens
+              client.server_capabilities.semanticTokensProvider = {
+                full = true,
+                legend = {
+                  tokenTypes = semantic.tokenTypes,
+                  tokenModifiers = semantic.tokenModifiers,
+                },
+                range = true,
+              }
             end
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for ts_ls)
-            server.capabilities = vim.tbl_deep_extend(
-              'force',
-              {},
-              capabilities,
-              server.capabilities or {}
-            )
-            require('lspconfig')[server_name].setup(server)
-          end,
+          end, 'gopls')
+          -- end workaround
+        end,
+
+        -- Block rust_analyzer here AND in the default handler below.
+        -- rustaceanvim manages its own rust-analyzer client.
+        rust_analyzer = function()
+          return true
+        end,
+      }, external_setup)
+
+      -- Append the default anonymous handler as the array part
+      table.insert(handlers, function(server_name)
+        -- Skip rust_analyzer setup as it's handled by rustaceanvim
+        if server_name == 'rust_analyzer' then
+          return
+        end
+        local server = servers[server_name] or {}
+        -- This handles overriding only values explicitly passed
+        -- by the server configuration above. Useful when disabling
+        -- certain features of an LSP (for example, turning off formatting for ts_ls)
+        server.capabilities = vim.tbl_deep_extend(
+          'force',
+          {},
+          capabilities,
+          server.capabilities or {}
+        )
+        require('lspconfig')[server_name].setup(server)
+      end)
+
+      require('mason-lspconfig').setup {
+        automatic_enable = {
+          exclude = { 'rust_analyzer' },
         },
+        handlers = handlers,
       }
     end,
   },

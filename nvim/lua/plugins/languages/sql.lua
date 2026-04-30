@@ -20,21 +20,8 @@ return {
       vim.g.db_ui_use_nerd_fonts = 1
     end,
   },
-  { -- optional saghen/blink.cmp completion source
-    'saghen/blink.cmp',
-    version = '*',
-    build = 'cargo +nightly build --release',
-    opts = {
-      sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
-        per_filetype = {
-          sql = { 'snippets', 'dadbod', 'buffer' },
-        },
-        -- add vim-dadbod-completion to your completion providers
-        providers = {
-          dadbod = { name = 'Dadbod', module = 'vim_dadbod_completion.blink' },
-        },
-      },
-    },
-  },
+  -- NOTE: dadbod completion for nvim-cmp is configured in cmp.lua via
+  -- cmp.setup.filetype for sql filetypes. Do NOT load blink.cmp here;
+  -- it is a competing completion engine that breaks nvim-cmp in Rust.
+
 }
