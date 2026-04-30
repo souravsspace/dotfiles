@@ -15,8 +15,7 @@
         allowUnfree = true;
       };
 
-      environment.systemPackages = with pkgs; [
-        neovim
+      environment.systemPackages = with pkgs; [ 
         tmux
         bun
         docker
@@ -80,6 +79,7 @@
           "libpq"
           "postgresql"
           "awscli"
+          "neovim"
         ];
 
         casks = [
