@@ -7,9 +7,6 @@
   ],
   "default_agent": "architect",
   "agent": {
-    "general": {
-      "color": "#f1faee"
-    },
     "architect": {
       "color": "#71b084"
     },
@@ -51,6 +48,10 @@
     },
     "build": {
       "disable": true
+    },
+    "general": {
+      "disable": true,
+      "color": "#f1faee"
     }
   },
   "mcp": {

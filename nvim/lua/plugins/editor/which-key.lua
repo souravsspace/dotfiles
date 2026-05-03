@@ -129,6 +129,11 @@ return {
           group = 'Test',
           icon = { icon = '󰙨', color = 'purple' },
         },
+        {
+          '<leader>tc',
+          desc = 'Todos',
+          icon = { icon = '', color = 'yellow' },
+        },
         -- hide from "u to the end arrow"
         { '<leader>u', hidden = true },
         { '<leader>v', hidden = true },

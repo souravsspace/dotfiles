@@ -10,7 +10,7 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 require('lazy').setup({
   spec = {
     'tpope/vim-sleuth',
-    -- { import = 'plugins.coding.ai' },
+    { import = 'plugins.coding.ai' },
     { import = 'plugins.coding.cmp' },
     { import = 'plugins.coding.inc-rename' },
     { import = 'plugins.coding.lspconfig' },
@@ -18,7 +18,6 @@ require('lazy').setup({
     { import = 'plugins.coding.todo-comments' },
     { import = 'plugins.coding.treesitter' },
     { import = 'plugins.coding.trouble' },
-    { import = 'plugins.dap.core' },
     { import = 'plugins.editor.fzf' },
     { import = 'plugins.editor.commandline' },
     { import = 'plugins.editor.gitsigns' },
@@ -29,7 +28,6 @@ require('lazy').setup({
     { import = 'plugins.editor.mini' },
     { import = 'plugins.editor.octo' },
     { import = 'plugins.editor.file-tree' },
-    { import = 'plugins.editor.overseer' },
     { import = 'plugins.editor.snacks' },
     { import = 'plugins.editor.tabout' },
     { import = 'plugins.editor.tmux' },
@@ -51,7 +49,6 @@ require('lazy').setup({
     { import = 'plugins.languages.tailwind' },
     { import = 'plugins.languages.typescript' },
     { import = 'plugins.languages.yaml' },
-    { import = 'plugins.languages.obsidian' },
     { import = 'plugins.snippets.ts' },
     { import = 'plugins.linting.core' },
     { import = 'plugins.test.core' },
