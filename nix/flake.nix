@@ -5,10 +5,16 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew/a5409abd0d5013d79775d3419bcac10eacb9d8c5";
+
+    homebrew-core = { url = "github:homebrew/homebrew-core/ea92d115d4f7b0c154d83eb36af259a5b793e900"; flake = false; };
+    homebrew-cask = { url = "github:homebrew/homebrew-cask/61be7295e5800e52fed5e80cf516d399f5dc909b"; flake = false; };
+    homebrew-nikitabobko-tap = { url = "github:nikitabobko/homebrew-tap"; flake = false; };
+    homebrew-felixkratz-formulae = { url = "github:FelixKratz/homebrew-formulae"; flake = false; };
+    homebrew-cmux = { url = "github:manaflow-ai/homebrew-cmux"; flake = false; };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, homebrew-core, homebrew-cask, homebrew-nikitabobko-tap, homebrew-felixkratz-formulae, homebrew-cmux }:
   let
     configuration = { pkgs, config, ... }: {
       nixpkgs.config = {
@@ -66,11 +72,6 @@
 
       homebrew = {
         enable = true;
-        taps = [
-          "nikitabobko/tap"
-          "FelixKratz/formulae"
-          "manaflow-ai/cmux"
-        ];
 
         brews = [
           "cloudflared"
@@ -113,8 +114,9 @@
         ];
 
         onActivation.cleanup = "zap";
-        onActivation.autoUpdate = true;
-        onActivation.upgrade = true;
+        onActivation.autoUpdate = false;
+        onActivation.upgrade = false;
+        global.autoUpdate = false;
       };
 
       fonts.packages = [
@@ -184,8 +186,26 @@
               user = "sourav";
 
               autoMigrate = true;
+
+              mutableTaps = false;
+
+              taps = {
+                "homebrew/homebrew-core" = homebrew-core;
+                "homebrew/homebrew-cask" = homebrew-cask;
+                "nikitabobko/homebrew-tap" = homebrew-nikitabobko-tap;
+                "felixkratz/homebrew-formulae" = homebrew-felixkratz-formulae;
+                "manaflow-ai/homebrew-cmux" = homebrew-cmux;
+              };
+
+              extraEnv = {
+                HOMEBREW_NO_AUTO_UPDATE = "1";
+                HOMEBREW_NO_ENV_HINTS = "1";
+              };
             };
           }
+          ({ config, ... }: {
+            homebrew.taps = builtins.attrNames config.nix-homebrew.taps;
+          })
         ];
     };
 

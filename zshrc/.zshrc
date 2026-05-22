@@ -314,3 +314,4 @@ love() {
 
 # bun completions
 [ -s "/Users/sourav/.bun/_bun" ] && source "/Users/sourav/.bun/_bun"
+export PATH=$PATH:$HOME/.maestro/bin
