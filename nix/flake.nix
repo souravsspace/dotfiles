@@ -81,6 +81,8 @@
           "postgresql"
           "awscli"
           "neovim"
+          "gnupg"
+          "pass"
         ];
 
         casks = [
@@ -106,10 +108,8 @@
           "figma"
           "claude"
           "whatsapp"
-          "messenger"
           "kindavim"
           "shortcat"
-          "claude-code@latest"
           "cmux"
         ];
 
