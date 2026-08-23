@@ -428,15 +428,12 @@ return {
         'prettierd',
         'pyright',
         'ruff',
-        'ruff-lsp',
         'stylua',
         'tailwindcss-language-server',
         'vtsls',
-        'hadolint',
         'cmakelang',
         'cmakelint',
         'gopls',
-        'delve',
       })
 
       require('mason-tool-installer').setup {

@@ -1,14 +1,14 @@
 {
-  description = "Savory nix-darwin system flake";
+  description = "sorvsys nix-darwin system flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    nix-homebrew.url = "github:zhaofengli/nix-homebrew/a5409abd0d5013d79775d3419bcac10eacb9d8c5";
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew/b00218e4aec0e5bf07d61a0bb13f842faa582d7b";
 
-    homebrew-core = { url = "github:homebrew/homebrew-core/ea92d115d4f7b0c154d83eb36af259a5b793e900"; flake = false; };
-    homebrew-cask = { url = "github:homebrew/homebrew-cask/61be7295e5800e52fed5e80cf516d399f5dc909b"; flake = false; };
+    homebrew-core = { url = "github:homebrew/homebrew-core/c53ae0baea593d836ea7787154413f36607b8f82"; flake = false; };
+    homebrew-cask = { url = "github:homebrew/homebrew-cask/883c4c1c4c72bd9d6dfa367bd63261aa21197372"; flake = false; };
     homebrew-nikitabobko-tap = { url = "github:nikitabobko/homebrew-tap"; flake = false; };
     homebrew-felixkratz-formulae = { url = "github:FelixKratz/homebrew-formulae"; flake = false; };
     homebrew-cmux = { url = "github:manaflow-ai/homebrew-cmux"; flake = false; };
@@ -75,7 +75,6 @@
         enable = true;
 
         brews = [
-          "cloudflared"
           "sevenzip"
           "mysql-client"
           "libpq"
@@ -112,9 +111,9 @@
           "kindavim"
           "shortcat"
           "cmux"
+          "helium-browser"
         ];
 
-        onActivation.cleanup = "zap";
         onActivation.autoUpdate = false;
         onActivation.upgrade = false;
         global.autoUpdate = false;
@@ -144,7 +143,7 @@
         done
             '';
 
-      system.primaryUser = "sourav";
+      system.primaryUser = "souravukil";
 
 
       system.defaults = {
@@ -173,8 +172,8 @@
   in
   {
     # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#savory
-    darwinConfigurations."savory" = nix-darwin.lib.darwinSystem {
+    # $ darwin-rebuild build --flake .#sorvsys
+    darwinConfigurations."sorvsys" = nix-darwin.lib.darwinSystem {
       modules = [ 
           configuration 
           nix-homebrew.darwinModules.nix-homebrew
@@ -184,7 +183,7 @@
               # Apple silicon only
               enableRosetta = true;
               # User owning the Homebrew prefix
-              user = "sourav";
+              user = "souravukil";
 
               autoMigrate = true;
 
@@ -210,6 +209,6 @@
         ];
     };
 
-    darwinPackages = self.darwinConfigurations."savory".pkgs;
+    darwinPackages = self.darwinConfigurations."sorvsys".pkgs;
   };
 }

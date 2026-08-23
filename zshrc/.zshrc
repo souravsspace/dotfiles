@@ -104,6 +104,8 @@ export PATH=/Users/sourav/.opencode/bin:$PATH
 # Node.js global packages
 export PATH="$HOME/.npm-global/bin:$PATH"
 
+export PATH="$HOME/.local/bin:$PATH"
+
 # Ruby
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
@@ -232,7 +234,7 @@ alias tmux="tmux -f $HOME/dotfiles/tmux/tmux.conf"
 alias postman="atac -d ~/dotfiles/atac"
 
 # --- Darwin rebuild ---
-alias rebuild="sudo darwin-rebuild switch --flake ~/dotfiles/nix#savory"
+alias rebuild="sudo darwin-rebuild switch --flake ~/dotfiles/nix#sorvsys"
 
 # --- tldr / help ---
 if command -v tldr &> /dev/null; then
@@ -315,3 +317,4 @@ love() {
 # bun completions
 [ -s "/Users/sourav/.bun/_bun" ] && source "/Users/sourav/.bun/_bun"
 export PATH=$PATH:$HOME/.maestro/bin
+export PATH="/Users/souravukil/.bun/bin:$PATH"

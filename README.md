@@ -13,11 +13,11 @@ sudo launchctl list | grep nix
 ```
 
 ```bash
-sudo nix run nix-darwin --extra-experimental-features "nix-command flakes" -- switch --flake ~/dotfiles/nix#savory
+sudo nix run nix-darwin --extra-experimental-features "nix-command flakes" -- switch --flake ~/dotfiles/nix#sorvsys
 ```
 
 ```bash
-darwin-rebuild switch --flake ~/dotfiles/nix#savory
+darwin-rebuild switch --flake ~/dotfiles/nix#sorvsys
 ```
 
 ```bash

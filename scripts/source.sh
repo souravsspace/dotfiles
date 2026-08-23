@@ -26,9 +26,6 @@ TMUX_CFG="$HOME/.config/tmux/tmux.conf"
 if [ -f "$TMUX_CFG" ]; then
   echo "Reloading tmux config: $TMUX_CFG"
   tmux source-file "$TMUX_CFG"
-  # Reload TPM plugins
-  echo "Installing/updating TPM plugins"
-  "$TPM_DIR/bin/install_plugins"
 else
   echo "Warning: tmux config not found at $TMUX_CFG"
 fi
@@ -41,17 +38,9 @@ else
   echo "Warning: 'aerospace' command not found in PATH"
 fi
 
-# 4) Reload Ghostty (if it supports a reload command)
-if command -v ghostty >/dev/null 2>&1; then
-  echo "Reloading Ghostty configuration"
-  ghostty reload-config || echo "ghostty reload-config failed (check Ghostty version)"
-else
-  echo "Warning: 'ghostty' command not found"
-fi
+# 4) Ghostty auto-reloads its config file on change, nothing to do here.
 
-echo "All done!"
-
-# 5) Rebuild bat cache and reload Zsh configuration
+# 5) Rebuild bat cache
 if command -v bat >/dev/null 2>&1; then
   echo "Rebuilding bat cache"
   bat cache --build
@@ -59,10 +48,19 @@ else
   echo "Warning: 'bat' command not found"
 fi
 
+# 6) Sanity-check the Zsh configuration (this script runs as a bash
+# subprocess, so it can't reload config into your interactive shell —
+# run `exec zsh` or open a new terminal for that).
 ZSHRC="$HOME/.config/zshrc/.zshrc"
 if [ -f "$ZSHRC" ]; then
-  echo "Reloading Zsh configuration: $ZSHRC"
-  source "$ZSHRC"
+  echo "Validating Zsh configuration: $ZSHRC"
+  if zsh -c "source '$ZSHRC'" 2>/tmp/zshrc-check.$$; then
+    echo "Zsh config OK. Run 'exec zsh' or open a new terminal to apply it."
+  else
+    echo "Warning: Zsh config failed to source cleanly:"
+    cat /tmp/zshrc-check.$$
+  fi
+  rm -f /tmp/zshrc-check.$$
 else
   echo "Warning: Zshrc file not found at $ZSHRC"
 fi

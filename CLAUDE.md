@@ -11,10 +11,10 @@ This is a personal dotfiles repository for a macOS development environment using
 ### System Management
 ```bash
 # Rebuild Nix-darwin configuration
-darwin-rebuild switch --flake ~/dotfiles/nix#savory
+darwin-rebuild switch --flake ~/dotfiles/nix#sorvsys
 
 # Alternative rebuild command (first-time setup)
-nix run nix-darwin --extra-experimental-features "nix-command flakes" -- switch --flake ~/dotfiles/nix#savory
+nix run nix-darwin --extra-experimental-features "nix-command flakes" -- switch --flake ~/dotfiles/nix#sorvsys
 
 # Apply all dotfile configurations using GNU Stow
 stow .
