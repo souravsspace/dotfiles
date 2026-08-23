@@ -68,6 +68,7 @@
         nix
         gh-dash
         cocoapods
+        ngrok
       ];
 
       homebrew = {

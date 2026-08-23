@@ -11,7 +11,7 @@ font-family = "JetBrains Mono"
 
 ### Background ###
 selection-background = #4a4e3e
-background-opacity = 0.95
+background-opacity = 0.99
 background-blur-radius = 40
 
 ### mouse ###

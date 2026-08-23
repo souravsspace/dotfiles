@@ -55,10 +55,6 @@
     }
   },
   "mcp": {
-    "chrome-devtools": {
-      "command": ["npx", "-y", "chrome-devtools-mcp@latest"],
-      "type": "local"
-    },
     "context7": {
       "command": ["npx", "-y", "@upstash/context7-mcp"],
       "type": "local"
@@ -66,13 +62,6 @@
     "engram": {
       "command": ["engram", "mcp", "--tools=agent"],
       "enabled": true,
-      "type": "local"
-    },
-    "firecrawl-mcp": {
-      "command": ["npx", "-y", "firecrawl-mcp"],
-      "environment": {
-        "FIRECRAWL_API_KEY": "$API_KEY"
-      },
       "type": "local"
     }
   },
