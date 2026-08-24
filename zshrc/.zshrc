@@ -318,3 +318,6 @@ love() {
 [ -s "/Users/sourav/.bun/_bun" ] && source "/Users/sourav/.bun/_bun"
 export PATH=$PATH:$HOME/.maestro/bin
 export PATH="/Users/souravukil/.bun/bin:$PATH"
+
+# Rust / cargo environment
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
