@@ -112,6 +112,7 @@
           "shortcat"
           "cmux"
           "helium-browser"
+          "vorssaint"
         ];
 
         onActivation.autoUpdate = false;
