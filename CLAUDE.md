@@ -16,8 +16,12 @@ darwin-rebuild switch --flake ~/dotfiles/nix#sorvsys
 # Alternative rebuild command (first-time setup)
 nix run nix-darwin --extra-experimental-features "nix-command flakes" -- switch --flake ~/dotfiles/nix#sorvsys
 
-# Apply all dotfile configurations using GNU Stow
+# Apply all dotfile configurations using GNU Stow (targets ~/.config)
 stow .
+
+# Claude Code config: stows into $HOME, not ~/.config.
+# Must run from outside ~/dotfiles, since .stowrc ignores `claude` for `stow .`
+cd ~ && stow --dir ~/dotfiles --target ~ claude
 
 # Initialize environment (install TPM, set up configs, reload everything)
 chmod +x source.sh && ./source.sh
@@ -66,6 +70,11 @@ bat cache --build
 - **Neovim**: Lua-based configuration with LazyVim, extensive plugin ecosystem, LSP support
 - **NuShell**: Modern shell replacement with structured data support
 - **Editor**: Zed editor configurations
+
+### Claude Code (`claude/`)
+- Stow package targeting `$HOME` instead of `~/.config`, since Claude Code reads `~/.claude`
+- Tracks `settings.json`, `statusline.sh`, `agents/`, `skills/`, and the two plugin manifests
+- Runtime state (plugin clones, transcripts, caches) stays untracked; see `claude/README.md`
 
 ### File Management (`yazi/`)
 - Modern terminal file manager with custom themes and keybindings

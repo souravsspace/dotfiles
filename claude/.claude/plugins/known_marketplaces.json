@@ -1,0 +1,26 @@
+{
+  "claude-plugins-official": {
+    "source": {
+      "source": "github",
+      "repo": "anthropics/claude-plugins-official"
+    },
+    "installLocation": "/Users/souravukil/.claude/plugins/marketplaces/claude-plugins-official",
+    "lastUpdated": "2026-08-24T09:43:38.719Z"
+  },
+  "impeccable": {
+    "source": {
+      "source": "github",
+      "repo": "pbakaus/impeccable"
+    },
+    "installLocation": "/Users/souravukil/.claude/plugins/marketplaces/impeccable",
+    "lastUpdated": "2026-08-24T09:13:14.702Z"
+  },
+  "caveman": {
+    "source": {
+      "source": "github",
+      "repo": "JuliusBrussee/caveman"
+    },
+    "installLocation": "/Users/souravukil/.claude/plugins/marketplaces/caveman",
+    "lastUpdated": "2026-08-24T08:56:13.692Z"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "model": "opus",
+  "statusLine": {
+    "type": "command",
+    "command": "/Users/souravukil/.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "caveman@caveman": true,
+    "impeccable@impeccable": true
+  },
+  "extraKnownMarketplaces": {
+    "impeccable": {
+      "source": {
+        "source": "github",
+        "repo": "pbakaus/impeccable"
+      }
+    },
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
+    }
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark-ansi",
+  "agentPushNotifEnabled": true
+}

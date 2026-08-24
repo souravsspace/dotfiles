@@ -24,6 +24,12 @@ darwin-rebuild switch --flake ~/dotfiles/nix#sorvsys
 stow .
 ```
 
+Claude Code config lives in the `claude/` package and targets `$HOME` instead of `~/.config`; run it from outside the repo:
+
+```bash
+cd ~ && stow --dir ~/dotfiles --target ~ claude
+```
+
 ```bash
 source ~/dotfiles/zshrc/.zshrc
 ```

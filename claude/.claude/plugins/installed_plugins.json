@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "plugins": {
+    "caveman@caveman": [
+      {
+        "scope": "user",
+        "installPath": "/Users/souravukil/.claude/plugins/cache/caveman/caveman/7bb71309e874",
+        "version": "7bb71309e874",
+        "installedAt": "2026-08-24T08:56:14.619Z",
+        "lastUpdated": "2026-08-24T08:56:14.619Z",
+        "gitCommitSha": "7bb71309e8749a4f112aacd3a54b3941d8689905"
+      }
+    ],
+    "impeccable@impeccable": [
+      {
+        "scope": "user",
+        "installPath": "/Users/souravukil/.claude/plugins/cache/impeccable/impeccable/4.1.1",
+        "version": "4.1.1",
+        "installedAt": "2026-08-24T09:14:40.489Z",
+        "lastUpdated": "2026-08-24T09:14:40.489Z",
+        "gitCommitSha": "c3a30086bc395ea2197fbe287dc59c18969aaeb6"
+      }
+    ]
+  }
+}

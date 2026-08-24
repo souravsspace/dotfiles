@@ -3,3 +3,4 @@
 --ignore=DS_Store
 --ignore=env
 --ignore=atuin/*
+--ignore=claude
