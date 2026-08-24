@@ -144,16 +144,6 @@ __git_branch() {
     __field workspace.git_worktree
   fi
 }
-__git_dirty() {
-  local cwd
-  cwd="$(__field workspace.current_dir)"
-  if [ -z "$cwd" ]; then cwd="$(__field cwd)"; fi
-  if [ -n "$cwd" ] && command -v git >/dev/null 2>&1; then
-    if [ -n "$(git -C "$cwd" status --porcelain 2>/dev/null)" ]; then printf '1'; else printf '0'; fi
-  else
-    printf '0'
-  fi
-}
 __emit() {
   local style="$1" text="$2"
   if [ -n "$style" ]; then __sgr "$style"; fi
@@ -217,25 +207,58 @@ __tick() {
     date +%s
   fi
 }
-__rel_time() {
-  local target="$1"
-  if [ -z "$target" ]; then printf ''; return; fi
-  case "$target" in
-    ''|*[!0-9.-]*) printf ''; return ;;
+__epoch_from() {
+  # Accept epoch seconds, epoch milliseconds, or an ISO 8601 timestamp and
+  # print epoch seconds. Prints nothing when the value cannot be parsed.
+  local v="$1"
+  if [ -z "$v" ]; then printf ''; return; fi
+  local digits="${v%%.*}"
+  case "$digits" in
+    ''|*[!0-9]*) ;;
+    *)
+      if [ "${#digits}" -ge 12 ]; then printf '%s' "$((digits / 1000))"
+      else printf '%s' "$digits"; fi
+      return ;;
   esac
-  local t_int="${target%.*}"
-  if [ -z "$t_int" ] || [ "$t_int" = "-" ]; then printf ''; return; fi
-  local now diff h m s rem
-  now=$(__tick)
-  diff=$((t_int - now))
-  if [ "$diff" -le 0 ]; then printf ''; return; fi
-  if [ "$diff" -lt 60 ]; then printf 'T-%ds' "$diff"; return; fi
-  if [ "$diff" -lt 3600 ]; then
-    m=$((diff/60)); s=$((diff%60))
-    printf 'T-%dm%02ds' "$m" "$s"; return
+  if command -v python3 >/dev/null 2>&1; then
+    if ISO_ARG="$v" python3 - <<'PYISO' 2>/dev/null
+import os, datetime
+v = os.environ.get('ISO_ARG', '').strip()
+if v.endswith('Z'):
+    v = v[:-1] + '+00:00'
+try:
+    d = datetime.datetime.fromisoformat(v)
+except ValueError:
+    raise SystemExit(1)
+if d.tzinfo is None:
+    d = d.replace(tzinfo=datetime.timezone.utc)
+print(int(d.timestamp()), end='')
+PYISO
+    then return; fi
   fi
-  h=$((diff/3600)); rem=$(((diff%3600)/60))
-  printf 'T-%dh%02dm' "$h" "$rem"
+  # GNU date, then BSD date.
+  if date -u -d "$v" +%s 2>/dev/null; then return; fi
+  local trimmed="${v%Z}"
+  trimmed="${trimmed%%.*}"
+  if date -j -u -f '%Y-%m-%dT%H:%M:%S' "$trimmed" +%s 2>/dev/null; then return; fi
+  printf ''
+}
+__rel_time() {
+  local target
+  target="$(__epoch_from "$1")"
+  if [ -z "$target" ]; then printf ''; return; fi
+  local now diff d h m
+  now=$(__tick)
+  diff=$((target - now))
+  if [ "$diff" -le 0 ]; then printf ''; return; fi
+  if [ "$diff" -lt 60 ]; then printf '%ds' "$diff"; return; fi
+  if [ "$diff" -lt 3600 ]; then printf '%dm' "$((diff / 60))"; return; fi
+  if [ "$diff" -lt 86400 ]; then
+    h=$((diff / 3600)); m=$(((diff % 3600) / 60))
+    printf '%dh%02dm' "$h" "$m"; return
+  fi
+  d=$((diff / 86400)); h=$(((diff % 86400) / 3600))
+  printf '%dd%02dh' "$d" "$h"
 }
 __v="$(__field 'model.display_name')"
 __emit '' "$__v"
@@ -248,8 +271,6 @@ __emit '' ' | '
 __out="$(__git_branch)"
 __emit '' "$__out"
 __emit '' ' | ctx: '
-__v="$(__field 'context_window.used_percentage')"
-__emit '' "$__v"
 __u="$(__tokens_used)"
 __t="$(__tokens_total)"
 __uf="$(__fmt_token_compact "$__u")"
@@ -261,24 +282,21 @@ __reset
 __v="$(__field 'rate_limits.five_hour.used_percentage')"
 __bar_out="$(__bar "$__v" 13 '▮' '▯')"
 __emit '1' "$__bar_out"
-__emit '' ' | '
-__v="$(__field 'rate_limits.five_hour.used_percentage')"
-__emit '' "$__v"
-__v="$(__field 'rate_limits.five_hour.resets_at')"
-__out="$(__rel_time "$__v")"
-__emit '' "$__out"
-__emit '' ' | '
-__v="$(__field 'rate_limits.seven_day.used_percentage')"
-__emit '' "$__v"
-__v="$(__field 'rate_limits.seven_day.resets_at')"
-__out="$(__rel_time "$__v")"
-__emit '' "$__out"
-__emit '' ' '
-if [ "$(__git_dirty)" = '1' ]; then
-  __emit '' '✗'
-else
-  __emit '' '✓'
-fi
+__limit_seg() {
+  # "<pct>% · <time until reset>", with either half omitted when the
+  # corresponding field is absent from the payload.
+  local key="$1" pct rel
+  pct="$(__field "rate_limits.$key.used_percentage")"
+  rel="$(__rel_time "$(__field "rate_limits.$key.resets_at")")"
+  if [ -n "$pct" ] && [ -n "$rel" ]; then printf '%s%% · %s' "$pct" "$rel"; return; fi
+  if [ -n "$pct" ]; then printf '%s%%' "$pct"; return; fi
+  printf '%s' "$rel"
+}
+__seg5="$(__limit_seg 'five_hour')"
+__seg7="$(__limit_seg 'seven_day')"
+if [ -n "$__seg5" ]; then __emit '' " $__seg5"; fi
+if [ -n "$__seg5" ] && [ -n "$__seg7" ]; then __emit '' ' │ '
+elif [ -n "$__seg7" ]; then __emit '' ' '; fi
+if [ -n "$__seg7" ]; then __emit '' "$__seg7"; fi
 
 exit 0
-
