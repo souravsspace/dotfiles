@@ -38,6 +38,10 @@ Pi discovers the linked `extensions/*/index.ts`, `skills/*/SKILL.md`, and
 extension uses installed binaries when available. Its fallback downloads
 official releases only if neither an installed nor bundled binary is present.
 
+The tracked `settings.json` excludes selected shared `~/.agents/skills`
+capabilities from Pi only. The skill directories are not deleted and remain
+available to other agents.
+
 ## Firecrawl
 
 The search, scrape, and crawl tools need your own Firecrawl API key. Add

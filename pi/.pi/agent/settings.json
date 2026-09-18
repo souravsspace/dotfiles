@@ -10,5 +10,27 @@
   "collapseChangelog": true,
   "showCacheMissNotices": true,
   "editorPaddingX": 1,
-  "enableSkillCommands": true
+  "enableSkillCommands": true,
+  "skills": [
+    "!ai-video-generation",
+    "!banner-design",
+    "!better-auth-best-practices",
+    "!better-auth-security-best-practices",
+    "!better-typography",
+    "!brand",
+    "!design",
+    "!design-system",
+    "!effective-print-design",
+    "!frontend-design",
+    "!hono",
+    "!organization-best-practices",
+    "!polar-integration",
+    "!research",
+    "!setup-polar",
+    "!slides",
+    "!stripe-best-practices",
+    "!tdd",
+    "!ui-styling",
+    "!vitest"
+  ]
 }
