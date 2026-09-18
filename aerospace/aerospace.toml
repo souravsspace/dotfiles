@@ -60,11 +60,11 @@ if.app-name-regex-substring = 'claude'
 run = 'layout floating'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'codex'
+if.app-name-regex-substring = 'chatgpt'
 run = 'layout floating'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'sonex'
+if.app-name-regex-substring = 'signal'
 run = 'layout floating'
 
 [[on-window-detected]]

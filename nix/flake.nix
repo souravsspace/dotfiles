@@ -113,6 +113,7 @@
           "cmux"
           "helium-browser"
           "vorssaint"
+          "signal"
         ];
 
         onActivation.autoUpdate = false;

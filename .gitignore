@@ -36,6 +36,8 @@ neofetch/**
 *.swp
 
 # Claude Code runtime state (never track)
+claude/.claude/skills/synced/
+**/__pycache__/
 claude/.claude/history.jsonl
 claude/.claude/projects/
 claude/.claude/sessions/

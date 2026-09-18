@@ -1,0 +1,6 @@
+[mcp_servers.playwright]
+command = "bunx"
+args = [
+    "-y",
+    "@playwright/mcp@latest",
+]

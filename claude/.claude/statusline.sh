@@ -160,6 +160,20 @@ __norm_int() {
     *) printf '%s' "$v" ;;
   esac
 }
+__round_pct() {
+  # Round a possibly-decimal percentage to a whole number for display.
+  # Non-numeric or empty input is passed through untouched.
+  local v="$1" int frac
+  case "$v" in ''|*[!0-9.]*) printf '%s' "$v"; return ;; esac
+  int="${v%%.*}"
+  frac=''
+  case "$v" in *.*) frac="${v#*.}" ;; esac
+  [ -z "$int" ] && int=0
+  case "${frac:0:1}" in
+    [5-9]) int=$((int + 1)) ;;
+  esac
+  printf '%d' "$int"
+}
 __fmt_token_compact() {
   local n
   n="$(__norm_int "$1")"
@@ -286,7 +300,7 @@ __limit_seg() {
   # "<pct>% · <time until reset>", with either half omitted when the
   # corresponding field is absent from the payload.
   local key="$1" pct rel
-  pct="$(__field "rate_limits.$key.used_percentage")"
+  pct="$(__round_pct "$(__field "rate_limits.$key.used_percentage")")"
   rel="$(__rel_time "$(__field "rate_limits.$key.resets_at")")"
   if [ -n "$pct" ] && [ -n "$rel" ]; then printf '%s%% · %s' "$pct" "$rel"; return; fi
   if [ -n "$pct" ]; then printf '%s%%' "$pct"; return; fi

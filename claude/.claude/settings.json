@@ -6,7 +6,12 @@
   },
   "enabledPlugins": {
     "caveman@caveman": true,
-    "impeccable@impeccable": true
+    "impeccable@impeccable": true,
+    "figma@claude-plugins-official": true,
+    "revenuecat@claude-plugins-official": true,
+    "engram@engram": true,
+    "stripe@claude-plugins-official": true,
+    "codex@openai-codex": true
   },
   "extraKnownMarketplaces": {
     "impeccable": {
@@ -20,9 +25,33 @@
         "source": "github",
         "repo": "JuliusBrussee/caveman"
       }
+    },
+    "RevenueCat": {
+      "source": {
+        "source": "github",
+        "repo": "RevenueCat/ai-toolkit"
+      }
+    },
+    "engram": {
+      "source": {
+        "source": "github",
+        "repo": "Gentleman-Programming/engram"
+      }
+    },
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
+      }
+    }
+  },
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "high"
     }
   },
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark-ansi",
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "inputNeededNotifEnabled": true
 }
