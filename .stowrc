@@ -4,3 +4,4 @@
 --ignore=env
 --ignore=atuin/*
 --ignore=claude
+--ignore=pi

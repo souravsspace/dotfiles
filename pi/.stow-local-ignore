@@ -1,0 +1,10 @@
+^/README\.md$
+^/\.stow-local-ignore$
+bin
+sessions
+workflows
+auth\.json
+trust\.json
+models(-store)?\.json
+\.env
+config\.private\.json

@@ -51,3 +51,24 @@ claude/.claude/plugins/marketplaces/
 claude/.claude/plugins/plugin-catalog-cache.json
 claude/.claude/.caveman-*
 claude/.claude/.last-cleanup
+
+# Pi (stowed from pi/.pi/agent; settings.json and .env.example are tracked)
+pi/.pi/agent/**/node_modules/
+pi/.pi/agent/bin/
+pi/.pi/agent/sessions/
+pi/.pi/agent/workflows/
+pi/.pi/agent/auth.json
+pi/.pi/agent/trust.json
+pi/.pi/agent/models.json
+pi/.pi/agent/models-store.json
+pi/.pi/agent/.env
+pi/.pi/agent/.env.*
+!pi/.pi/agent/.env.example
+pi/.pi/agent/extensions/summaries/config.private.json
+pi/.pi/agent/extensions/summaries/config.private.json.*.tmp
+pi/.pi/agent/**/*.log
+pi/.pi/agent/**/*.tmp
+pi/.pi/agent/**/*.pem
+pi/.pi/agent/**/*.key
+pi/.pi/agent/.vscode/
+pi/.pi/agent/.idea/

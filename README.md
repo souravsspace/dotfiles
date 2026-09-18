@@ -30,6 +30,17 @@ Claude Code config lives in the `claude/` package and targets `$HOME` instead of
 cd ~ && stow --dir ~/dotfiles --target ~ claude
 ```
 
+Pi config lives in the `pi/` package and also targets `$HOME`. Install its
+dependencies in the repo, then stow it from outside the repo:
+
+```bash
+cd ~/dotfiles/pi/.pi/agent && npm ci --ignore-scripts
+cd ~ && stow --dir ~/dotfiles --target ~ pi
+```
+
+See [`pi/README.md`](pi/README.md) for migration of an existing Pi settings file
+and the optional Firecrawl API key.
+
 ```bash
 source ~/dotfiles/zshrc/.zshrc
 ```
