@@ -1,0 +1,113 @@
+{
+  "model": "opus",
+  "statusLine": {
+    "type": "command",
+    "command": "/Users/souravukil/.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "caveman@caveman": true,
+    "impeccable@impeccable": true,
+    "figma@claude-plugins-official": false,
+    "engram@engram": true,
+    "stripe@claude-plugins-official": true,
+    "codex@openai-codex": true,
+    "apollo@synced": false,
+    "bio-research@synced": false,
+    "brand-voice@synced": false,
+    "common-room@synced": false,
+    "customer-support@synced": false,
+    "data@synced": false,
+    "design@synced": false,
+    "engineering@synced": false,
+    "enterprise-search@synced": false,
+    "finance@synced": false,
+    "human-resources@synced": false,
+    "legal@synced": false,
+    "marketing@synced": false,
+    "operations@synced": false,
+    "product-management@synced": false,
+    "productivity@synced": false,
+    "sales@synced": false,
+    "zoom-plugin@synced": false,
+    "skins@hellosverre-mods": true,
+    "savvy-progress@claude-kit": true,
+    "filetree@claude-code-filetree": true,
+    "reflect-mod@claude-reflect-marketplace": true
+  },
+  "extraKnownMarketplaces": {
+    "impeccable": {
+      "source": {
+        "source": "github",
+        "repo": "pbakaus/impeccable"
+      }
+    },
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
+    },
+    "RevenueCat": {
+      "source": {
+        "source": "github",
+        "repo": "RevenueCat/ai-toolkit"
+      }
+    },
+    "engram": {
+      "source": {
+        "source": "github",
+        "repo": "Gentleman-Programming/engram"
+      }
+    },
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
+      }
+    },
+    "hellosverre-mods": {
+      "source": {
+        "source": "github",
+        "repo": "hellosverre/claude-skins"
+      }
+    },
+    "claude-kit": {
+      "source": {
+        "source": "github",
+        "repo": "johnnyvizz/claude-kit"
+      }
+    },
+    "claude-code-filetree": {
+      "source": {
+        "source": "github",
+        "repo": "data-goblin/claude-code-filetree"
+      }
+    },
+    "claude-reflect-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "bayramannakov/claude-reflect"
+      }
+    }
+  },
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "high"
+    },
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
+  "pluginConfigs": {
+    "savvy-progress@claude-kit": {
+      "options": {
+        "language": "en"
+      }
+    }
+  },
+  "tui": "fullscreen",
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark-ansi",
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true
+}
