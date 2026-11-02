@@ -321,3 +321,7 @@ export PATH="/Users/souravukil/.bun/bin:$PATH"
 
 # Rust / cargo environment
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
+# proto
+export PROTO_HOME="$HOME/.proto";
+export PATH="$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH";
