@@ -92,5 +92,8 @@
     "terminal_title_toggle": "none",
     "tips_toggle": "<leader>h",
     "display_thinking": "none"
-  }
+  },
+  "plugin": [
+    "file:///Users/souravukil/.config/opencode/plugins/orca-opencode-status-tui/tui.js"
+  ]
 }
